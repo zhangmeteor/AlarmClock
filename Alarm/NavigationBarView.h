@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  NavigationBarView.h
 //  Alarm
 //
 //  Created by zhanghao on 13-11-19.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface NavigationBarView : UIView
 
 @end

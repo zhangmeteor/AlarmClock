@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class ViewController;
+@class AlarmSetViewController;
+
+@class LeftSliderViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) AlarmSetViewController *viewController;
+
+@property (strong,nonatomic) LeftSliderViewController* leftSliderViewController;
 
 @end

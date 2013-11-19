@@ -8,16 +8,41 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "AlarmSetViewController.h"
+
+#import "LeftSliderViewController.h"
+
+#import <PKRevealController/PKRevealController.h>
+
+@interface AppDelegate () <PKRevealing>
+
+@property (strong,nonatomic) PKRevealController* pKRevealController;
+
+@end
 
 @implementation AppDelegate
+@synthesize viewController;
+@synthesize pKRevealController = _pKRevealController;
+@synthesize leftSliderViewController = _leftSliderViewController;
+
+//侧边栏宽度
+static const double LeftSliderWidth = 150;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    //添加侧边栏
+    self.leftSliderViewController = [[LeftSliderViewController alloc]initWithNibName:@"LeftSliderViewController" bundle:nil];
+    self.viewController = [[AlarmSetViewController alloc] initWithNibName:@"AlarmSetViewController" bundle:nil];
+    self.pKRevealController = [PKRevealController revealControllerWithFrontViewController:self.viewController leftViewController:self.leftSliderViewController];
+    
+    //Configure
+    [self.pKRevealController setMinimumWidth:LeftSliderWidth maximumWidth:LeftSliderWidth forViewController:self.leftSliderViewController];
+    self.pKRevealController.delegate = self;
+    self.pKRevealController.animationDuration = 0.25;
+    
+    self.window.rootViewController = self.pKRevealController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -47,6 +72,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - PKRevealing
+- (void)revealController:(PKRevealController *)revealController didChangeToState:(PKRevealControllerState)state
+{
+//    NSLog(@"%@ (%d)", NSStringFromSelector(_cmd), (int)state);
+}
+
+- (void)revealController:(PKRevealController *)revealController willChangeToState:(PKRevealControllerState)next
+{
+    PKRevealControllerState current = revealController.state;
+//    NSLog(@"%@ (%d -> %d)", NSStringFromSelector(_cmd), (int)current, (int)next);
 }
 
 @end

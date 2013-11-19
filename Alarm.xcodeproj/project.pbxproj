@@ -16,11 +16,27 @@
 		61092A10183B25CE0028B71F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A0F183B25CE0028B71F /* Default.png */; };
 		61092A12183B25CE0028B71F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A11183B25CE0028B71F /* Default@2x.png */; };
 		61092A14183B25CE0028B71F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A13183B25CE0028B71F /* Default-568h@2x.png */; };
-		61092A17183B25CE0028B71F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A16183B25CE0028B71F /* ViewController.m */; };
-		61092A1A183B25CE0028B71F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61092A18183B25CE0028B71F /* ViewController.xib */; };
+		61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A16183B25CE0028B71F /* AlarmSetViewController.m */; };
+		61092A1A183B25CE0028B71F /* AlarmSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61092A18183B25CE0028B71F /* AlarmSetViewController.xib */; };
+		61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A28183B31CF0028B71F /* GlobalFunction.m */; };
+		610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */; };
+		610D8A4A183B4C4F0030A1FF /* LeftSliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */; };
+		618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618F71DD183B655D00842F9D /* NavigationBarView.m */; };
+		61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */; };
+		61BB2E82183B3A72005E71AB /* WakeUpTrendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */; };
+		61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */; };
+		61BB2E87183B3A98005E71AB /* DeathTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */; };
+		61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E89183B3AC3005E71AB /* WeatherViewController.m */; };
+		61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */; };
+		61BB2E90183B3AD2005E71AB /* MusicSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */; };
+		61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */; };
+		61BB2E95183B3AE2005E71AB /* BackgroundSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */; };
+		61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */; };
+		F953A303A0AD45AEBC6036ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1673102BBE415B84501A0D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48DF38B0DC59498888A58C86 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		610929FA183B25CD0028B71F /* Alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610929FD183B25CD0028B71F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		610929FF183B25CD0028B71F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,9 +50,32 @@
 		61092A0F183B25CE0028B71F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		61092A11183B25CE0028B71F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		61092A13183B25CE0028B71F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		61092A15183B25CE0028B71F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		61092A16183B25CE0028B71F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		61092A19183B25CE0028B71F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		61092A15183B25CE0028B71F /* AlarmSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmSetViewController.h; sourceTree = "<group>"; };
+		61092A16183B25CE0028B71F /* AlarmSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmSetViewController.m; sourceTree = "<group>"; };
+		61092A19183B25CE0028B71F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AlarmSetViewController.xib; sourceTree = "<group>"; };
+		61092A27183B31CF0028B71F /* GlobalFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalFunction.h; sourceTree = "<group>"; };
+		61092A28183B31CF0028B71F /* GlobalFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalFunction.m; sourceTree = "<group>"; };
+		610D8A46183B4C4F0030A1FF /* LeftSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSliderViewController.h; sourceTree = "<group>"; };
+		610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSliderViewController.m; sourceTree = "<group>"; };
+		610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSliderViewController.xib; sourceTree = "<group>"; };
+		618F71DC183B655D00842F9D /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarView.h; sourceTree = "<group>"; };
+		618F71DD183B655D00842F9D /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarView.m; sourceTree = "<group>"; };
+		61BB2E7E183B3A72005E71AB /* WakeUpTrendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeUpTrendViewController.h; sourceTree = "<group>"; };
+		61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WakeUpTrendViewController.m; sourceTree = "<group>"; };
+		61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WakeUpTrendViewController.xib; sourceTree = "<group>"; };
+		61BB2E83183B3A98005E71AB /* DeathTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathTimeViewController.h; sourceTree = "<group>"; };
+		61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathTimeViewController.m; sourceTree = "<group>"; };
+		61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeathTimeViewController.xib; sourceTree = "<group>"; };
+		61BB2E88183B3AC3005E71AB /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		61BB2E89183B3AC3005E71AB /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		61BB2E8D183B3AD2005E71AB /* MusicSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSetViewController.h; sourceTree = "<group>"; };
+		61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSetViewController.m; sourceTree = "<group>"; };
+		61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSetViewController.xib; sourceTree = "<group>"; };
+		61BB2E92183B3AE2005E71AB /* BackgroundSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundSetViewController.h; sourceTree = "<group>"; };
+		61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundSetViewController.m; sourceTree = "<group>"; };
+		61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundSetViewController.xib; sourceTree = "<group>"; };
+		8F1673102BBE415B84501A0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +86,7 @@
 				610929FE183B25CD0028B71F /* UIKit.framework in Frameworks */,
 				61092A00183B25CD0028B71F /* Foundation.framework in Frameworks */,
 				61092A02183B25CD0028B71F /* CoreGraphics.framework in Frameworks */,
+				F953A303A0AD45AEBC6036ED /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +99,7 @@
 				61092A03183B25CD0028B71F /* Alarm */,
 				610929FC183B25CD0028B71F /* Frameworks */,
 				610929FB183B25CD0028B71F /* Products */,
+				48DF38B0DC59498888A58C86 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +117,7 @@
 				610929FD183B25CD0028B71F /* UIKit.framework */,
 				610929FF183B25CD0028B71F /* Foundation.framework */,
 				61092A01183B25CD0028B71F /* CoreGraphics.framework */,
+				8F1673102BBE415B84501A0D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,11 +125,17 @@
 		61092A03183B25CD0028B71F /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				618F71D8183B651900842F9D /* View */,
+				610D8A45183B4C320030A1FF /* SliderController */,
+				61092A26183B31B50028B71F /* GlobleFunction */,
+				61092A24183B27810028B71F /* Background */,
+				61092A23183B277D0028B71F /* Music */,
+				61092A22183B27780028B71F /* Weather */,
+				61092A21183B27720028B71F /* DeathTime */,
+				61092A20183B27680028B71F /* WakeUpTrend */,
+				61092A25183B27870028B71F /* Alarm */,
 				61092A0C183B25CE0028B71F /* AppDelegate.h */,
 				61092A0D183B25CE0028B71F /* AppDelegate.m */,
-				61092A15183B25CE0028B71F /* ViewController.h */,
-				61092A16183B25CE0028B71F /* ViewController.m */,
-				61092A18183B25CE0028B71F /* ViewController.xib */,
 				61092A04183B25CD0028B71F /* Supporting Files */,
 			);
 			path = Alarm;
@@ -107,6 +155,94 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		61092A20183B27680028B71F /* WakeUpTrend */ = {
+			isa = PBXGroup;
+			children = (
+				61BB2E7E183B3A72005E71AB /* WakeUpTrendViewController.h */,
+				61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */,
+				61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */,
+			);
+			name = WakeUpTrend;
+			sourceTree = "<group>";
+		};
+		61092A21183B27720028B71F /* DeathTime */ = {
+			isa = PBXGroup;
+			children = (
+				61BB2E83183B3A98005E71AB /* DeathTimeViewController.h */,
+				61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */,
+				61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */,
+			);
+			name = DeathTime;
+			sourceTree = "<group>";
+		};
+		61092A22183B27780028B71F /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				61BB2E88183B3AC3005E71AB /* WeatherViewController.h */,
+				61BB2E89183B3AC3005E71AB /* WeatherViewController.m */,
+				61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
+		61092A23183B277D0028B71F /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				61BB2E8D183B3AD2005E71AB /* MusicSetViewController.h */,
+				61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */,
+				61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		61092A24183B27810028B71F /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				61BB2E92183B3AE2005E71AB /* BackgroundSetViewController.h */,
+				61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */,
+				61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */,
+			);
+			name = Background;
+			sourceTree = "<group>";
+		};
+		61092A25183B27870028B71F /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				61092A15183B25CE0028B71F /* AlarmSetViewController.h */,
+				61092A16183B25CE0028B71F /* AlarmSetViewController.m */,
+				61092A18183B25CE0028B71F /* AlarmSetViewController.xib */,
+			);
+			name = Alarm;
+			sourceTree = "<group>";
+		};
+		61092A26183B31B50028B71F /* GlobleFunction */ = {
+			isa = PBXGroup;
+			children = (
+				61092A27183B31CF0028B71F /* GlobalFunction.h */,
+				61092A28183B31CF0028B71F /* GlobalFunction.m */,
+			);
+			name = GlobleFunction;
+			sourceTree = "<group>";
+		};
+		610D8A45183B4C320030A1FF /* SliderController */ = {
+			isa = PBXGroup;
+			children = (
+				610D8A46183B4C4F0030A1FF /* LeftSliderViewController.h */,
+				610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */,
+				610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */,
+			);
+			name = SliderController;
+			sourceTree = "<group>";
+		};
+		618F71D8183B651900842F9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				618F71DC183B655D00842F9D /* NavigationBarView.h */,
+				618F71DD183B655D00842F9D /* NavigationBarView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61092A1D183B25CE0028B71F /* Build configuration list for PBXNativeTarget "Alarm" */;
 			buildPhases = (
+				1C4E7A5B1D8B443A8569EA37 /* Check Pods Manifest.lock */,
 				610929F6183B25CD0028B71F /* Sources */,
 				610929F7183B25CD0028B71F /* Frameworks */,
 				610929F8183B25CD0028B71F /* Resources */,
+				DEEF9F7DA53B459FB0031949 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,14 +297,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				61092A08183B25CD0028B71F /* InfoPlist.strings in Resources */,
+				610D8A4A183B4C4F0030A1FF /* LeftSliderViewController.xib in Resources */,
 				61092A10183B25CE0028B71F /* Default.png in Resources */,
 				61092A12183B25CE0028B71F /* Default@2x.png in Resources */,
 				61092A14183B25CE0028B71F /* Default-568h@2x.png in Resources */,
-				61092A1A183B25CE0028B71F /* ViewController.xib in Resources */,
+				61092A1A183B25CE0028B71F /* AlarmSetViewController.xib in Resources */,
+				61BB2E82183B3A72005E71AB /* WakeUpTrendViewController.xib in Resources */,
+				61BB2E87183B3A98005E71AB /* DeathTimeViewController.xib in Resources */,
+				61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */,
+				61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */,
+				61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C4E7A5B1D8B443A8569EA37 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DEEF9F7DA53B459FB0031949 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		610929F6183B25CD0028B71F /* Sources */ = {
@@ -175,7 +352,15 @@
 			files = (
 				61092A0A183B25CD0028B71F /* main.m in Sources */,
 				61092A0E183B25CE0028B71F /* AppDelegate.m in Sources */,
-				61092A17183B25CE0028B71F /* ViewController.m in Sources */,
+				61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */,
+				61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */,
+				61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */,
+				61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */,
+				61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */,
+				61BB2E90183B3AD2005E71AB /* MusicSetViewController.m in Sources */,
+				610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */,
+				618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */,
+				61BB2E95183B3AE2005E71AB /* BackgroundSetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,12 +375,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		61092A18183B25CE0028B71F /* ViewController.xib */ = {
+		61092A18183B25CE0028B71F /* AlarmSetViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				61092A19183B25CE0028B71F /* en */,
 			);
-			name = ViewController.xib;
+			name = AlarmSetViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -226,7 +411,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -250,7 +435,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -259,10 +444,12 @@
 		};
 		61092A1E183B25CE0028B71F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48DF38B0DC59498888A58C86 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alarm/Alarm-Prefix.pch";
 				INFOPLIST_FILE = "Alarm/Alarm-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -270,10 +457,12 @@
 		};
 		61092A1F183B25CE0028B71F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48DF38B0DC59498888A58C86 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alarm/Alarm-Prefix.pch";
 				INFOPLIST_FILE = "Alarm/Alarm-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -298,6 +487,7 @@
 				61092A1F183B25CE0028B71F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
