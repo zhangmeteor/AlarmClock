@@ -29,8 +29,9 @@
 {
     self = [super init];
     if (self) {
-        [self InitLeftButtonWithFrame:LeftButtonframe];
         // Initialization code
+        self.frame = CGRectMake(0, 0, 320, 30);
+        [self InitLeftButtonWithFrame:LeftButtonframe];
     }
     return self;
 }
@@ -39,8 +40,9 @@
 {
     self = [super init];
     if (self) {
-        [self InitRightButtonWithFrame:RightButtonframe];
         // Initialization code
+        self.frame = CGRectMake(0, 0, 320, 30);
+        [self InitRightButtonWithFrame:RightButtonframe];
     }
     return self;
 }
@@ -49,9 +51,10 @@
 {
     self = [super init];
     if (self) {
+        // Initialization code
+        self.frame = CGRectMake(0, 0, 320, 30);
         [self InitLeftButtonWithFrame:LeftButtonframe];
         [self InitRightButtonWithFrame:RightButtonframe];
-        // Initialization code
     }
     return self;
 }
@@ -61,12 +64,16 @@
  */
 -(void)InitLeftButtonWithFrame:(CGRect)frame
 {
-    
+    self.LeftButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.LeftButton setFrame:frame];
+    [self addSubview:self.LeftButton];
 }
 
 -(void)InitRightButtonWithFrame:(CGRect)frame
 {
-    
+    self.RightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.RightButton setFrame:frame];
+    [self addSubview:self.RightButton];
 }
 
 /*

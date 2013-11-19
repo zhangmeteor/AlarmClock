@@ -60,6 +60,7 @@
 		610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSliderViewController.xib; sourceTree = "<group>"; };
 		618F71DC183B655D00842F9D /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarView.h; sourceTree = "<group>"; };
 		618F71DD183B655D00842F9D /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarView.m; sourceTree = "<group>"; };
+		618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarDelegate.h; sourceTree = "<group>"; };
 		61BB2E7E183B3A72005E71AB /* WakeUpTrendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeUpTrendViewController.h; sourceTree = "<group>"; };
 		61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WakeUpTrendViewController.m; sourceTree = "<group>"; };
 		61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WakeUpTrendViewController.xib; sourceTree = "<group>"; };
@@ -239,6 +240,7 @@
 			children = (
 				618F71DC183B655D00842F9D /* NavigationBarView.h */,
 				618F71DD183B655D00842F9D /* NavigationBarView.m */,
+				618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
