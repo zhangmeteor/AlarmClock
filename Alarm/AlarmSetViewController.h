@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class PKRevealController;
-
-@interface AlarmSetViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface AlarmSetViewController : NavigationBaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *AlarmSetTableView;
 

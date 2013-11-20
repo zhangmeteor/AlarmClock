@@ -10,4 +10,11 @@
 
 @protocol NavigationBarDelegate <NSObject>
 
+/**
+    Navigation Button Click Method
+ */
+-(void)LeftNavigationButtonClicked;
+
+-(void)RightNavigationButtonClicked;
+
 @end

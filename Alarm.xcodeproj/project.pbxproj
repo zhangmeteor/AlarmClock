@@ -21,6 +21,9 @@
 		61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A28183B31CF0028B71F /* GlobalFunction.m */; };
 		610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */; };
 		610D8A4A183B4C4F0030A1FF /* LeftSliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */; };
+		6111E6C4183C7AA600D77D96 /* NavigationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6111E6C3183C7AA600D77D96 /* NavigationBaseViewController.m */; };
+		6111E6C8183C8CB700D77D96 /* AlarmNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6111E6C7183C8CB700D77D96 /* AlarmNavigationController.m */; };
+		6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6111E6CF183CB79800D77D96 /* AlarmNavigationController.xib */; };
 		618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618F71DD183B655D00842F9D /* NavigationBarView.m */; };
 		61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */; };
 		61BB2E82183B3A72005E71AB /* WakeUpTrendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */; };
@@ -58,6 +61,13 @@
 		610D8A46183B4C4F0030A1FF /* LeftSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSliderViewController.h; sourceTree = "<group>"; };
 		610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSliderViewController.m; sourceTree = "<group>"; };
 		610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSliderViewController.xib; sourceTree = "<group>"; };
+		6111E6C1183C625300D77D96 /* UIPositionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPositionDefine.h; sourceTree = "<group>"; };
+		6111E6C2183C7AA600D77D96 /* NavigationBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBaseViewController.h; sourceTree = "<group>"; };
+		6111E6C3183C7AA600D77D96 /* NavigationBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBaseViewController.m; sourceTree = "<group>"; };
+		6111E6C6183C8CB700D77D96 /* AlarmNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmNavigationController.h; sourceTree = "<group>"; };
+		6111E6C7183C8CB700D77D96 /* AlarmNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmNavigationController.m; sourceTree = "<group>"; };
+		6111E6C9183C8D3C00D77D96 /* AlarmNavigationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmNavigationDelegate.h; sourceTree = "<group>"; };
+		6111E6CF183CB79800D77D96 /* AlarmNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmNavigationController.xib; sourceTree = "<group>"; };
 		618F71DC183B655D00842F9D /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarView.h; sourceTree = "<group>"; };
 		618F71DD183B655D00842F9D /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarView.m; sourceTree = "<group>"; };
 		618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarDelegate.h; sourceTree = "<group>"; };
@@ -126,6 +136,8 @@
 		61092A03183B25CD0028B71F /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				6111E6C1183C625300D77D96 /* UIPositionDefine.h */,
+				6111E6C5183C8C7B00D77D96 /* NavigationController */,
 				618F71D8183B651900842F9D /* View */,
 				610D8A45183B4C320030A1FF /* SliderController */,
 				61092A26183B31B50028B71F /* GlobleFunction */,
@@ -235,6 +247,19 @@
 			name = SliderController;
 			sourceTree = "<group>";
 		};
+		6111E6C5183C8C7B00D77D96 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				6111E6C6183C8CB700D77D96 /* AlarmNavigationController.h */,
+				6111E6C7183C8CB700D77D96 /* AlarmNavigationController.m */,
+				6111E6CF183CB79800D77D96 /* AlarmNavigationController.xib */,
+				6111E6C9183C8D3C00D77D96 /* AlarmNavigationDelegate.h */,
+				6111E6C2183C7AA600D77D96 /* NavigationBaseViewController.h */,
+				6111E6C3183C7AA600D77D96 /* NavigationBaseViewController.m */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
 		618F71D8183B651900842F9D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +334,7 @@
 				61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */,
 				61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */,
 				61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */,
+				6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,8 +380,10 @@
 			files = (
 				61092A0A183B25CD0028B71F /* main.m in Sources */,
 				61092A0E183B25CE0028B71F /* AppDelegate.m in Sources */,
+				6111E6C4183C7AA600D77D96 /* NavigationBaseViewController.m in Sources */,
 				61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */,
 				61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */,
+				6111E6C8183C8CB700D77D96 /* AlarmNavigationController.m in Sources */,
 				61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */,
 				61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */,
 				61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */,

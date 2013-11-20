@@ -8,16 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@class AlarmNavigationController;
+
 @class AlarmSetViewController;
 
 @class LeftSliderViewController;
+
+@class NavigationBarView;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) AlarmSetViewController *viewController;
+@property (strong, nonatomic) AlarmNavigationController *viewController;
 
 @property (strong,nonatomic) LeftSliderViewController* leftSliderViewController;
+
+@property(strong,nonatomic) AlarmSetViewController* alarmSetViewController;
+
+@property(strong,nonatomic)NavigationBarView* NavBar;
 
 @end

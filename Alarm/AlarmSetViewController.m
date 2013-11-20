@@ -10,6 +10,8 @@
 
 #import "GlobalFunction.h"
 
+#import "NavigationBarDelegate.h"
+
 @interface AlarmSetViewController ()
 
 @end
@@ -19,6 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.nav.m_NavBar SetTitle:@"test"];
+    [self.nav.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
+   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

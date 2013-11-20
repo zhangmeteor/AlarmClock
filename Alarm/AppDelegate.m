@@ -12,6 +12,10 @@
 
 #import "LeftSliderViewController.h"
 
+#import "AlarmNavigationController.h"
+
+#import "NavigationBarView.h"
+
 #import <PKRevealController/PKRevealController.h>
 
 @interface AppDelegate () <PKRevealing>
@@ -24,6 +28,8 @@
 @synthesize viewController;
 @synthesize pKRevealController = _pKRevealController;
 @synthesize leftSliderViewController = _leftSliderViewController;
+@synthesize alarmSetViewController = _alarmSetViewController;
+@synthesize NavBar = _NavBar;
 
 //侧边栏宽度
 static const double LeftSliderWidth = 150;
@@ -34,7 +40,13 @@ static const double LeftSliderWidth = 150;
     // Override point for customization after application launch.
     //添加侧边栏
     self.leftSliderViewController = [[LeftSliderViewController alloc]initWithNibName:@"LeftSliderViewController" bundle:nil];
-    self.viewController = [[AlarmSetViewController alloc] initWithNibName:@"AlarmSetViewController" bundle:nil];
+    
+    //Set NavigaitonBar
+    self.alarmSetViewController = [[AlarmSetViewController alloc] initWithNibName:@"AlarmSetViewController" bundle:nil];
+    self.NavBar = [[NavigationBarView alloc]initNavigationBarWithLeftButton:CGRectZero UsingFrameType:NAVIGATION_BUTTON_FRAME_DEAFULT];
+    self.viewController = [[AlarmNavigationController alloc]initWithRootController:self.alarmSetViewController WithNavigationBar:self.NavBar];
+   
+    //Set PKRevealController
     self.pKRevealController = [PKRevealController revealControllerWithFrontViewController:self.viewController leftViewController:self.leftSliderViewController];
     
     //Configure
@@ -82,7 +94,7 @@ static const double LeftSliderWidth = 150;
 
 - (void)revealController:(PKRevealController *)revealController willChangeToState:(PKRevealControllerState)next
 {
-    PKRevealControllerState current = revealController.state;
+//    PKRevealControllerState current = revealController.state;
 //    NSLog(@"%@ (%d -> %d)", NSStringFromSelector(_cmd), (int)current, (int)next);
 }
 

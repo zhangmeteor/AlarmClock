@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @interface GlobalFunction : NSObject
 
 +(double)GetGlobalViewState;
@@ -14,4 +15,6 @@
 +(void)SetGlobalViewState:(double)state;
 
 +(double)GetFunctionCount;
+
++(float)GetCurrentVersion;
 @end
