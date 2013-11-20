@@ -12,7 +12,7 @@
 
 #import "NavigationBarView.h"
 
-@interface AlarmNavigationController ()
+@interface AlarmNavigationController ()<NavigationBarDelegate>
 
 @property(nonatomic,retain)NavigationBaseViewController* m_RootController;
 
@@ -47,6 +47,7 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     if (self = [super initWithNibName:@"AlarmNavigationController" bundle:nil]) {
         self.m_RootController = RootController;
         self.m_NavBar = navBar;
+        self.m_NavBar.delegate = self;
     }
     return self;
 }
@@ -70,6 +71,11 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     [self.controller addObject:viewController];
     viewController.nav = self;
     self.m_CurrentController = viewController;
+    
+    //Set RootViewController View
+    if (self.m_CurrentController == self.m_RootController) {
+        [self.m_NavBar SetLeftButtonHidden:YES];
+    }
     
     //Set Animation
     if (animated) {
@@ -188,6 +194,19 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
         animation.subtype = kCATransitionFromLeft;
         [self.view.layer addAnimation:animation forKey:type];
     }
+}
+
+
+#pragma NavigationBarDelegate
+
+-(void)LeftNavigationButtonClicked
+{
+    [self popViewControllerWithAnimated:YES];
+}
+
+-(void)RightNavigationButtonClicked
+{
+    NSLog(@"Right Clicked");
 }
 
 /**

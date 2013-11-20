@@ -8,8 +8,6 @@
 
 #import "NavigationBarView.h"
 
-#import "NavigationBarDelegate.h"
-
 #import "UIPositionDefine.h"
 
 #import "GlobalFunction.h"
@@ -23,8 +21,6 @@ typedef enum _navigation_type
 }NAVIGATION_TYPE;
 
 @interface NavigationBarView ()
-
-@property (nonatomic,assign) id<NavigationBarDelegate> delegate;
 
 @property (nonatomic,retain) UIButton* LeftButton;
 
@@ -122,6 +118,20 @@ typedef enum _navigation_type
     [self.RightButton setFrame:frame];
     [self.RightButton addTarget:self action:@selector(RightButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.RightButton];
+}
+
+/**
+ Set Button Hidden
+ */
+
+-(void)SetLeftButtonHidden:(BOOL)hidden
+{
+    self.LeftButton.hidden = hidden;
+}
+
+-(void)SetRightButtonHidden:(BOOL)hidden
+{
+    self.RightButton.hidden = hidden;
 }
 
 #pragma Configure
