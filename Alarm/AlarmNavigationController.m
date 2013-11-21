@@ -13,12 +13,15 @@
 #import "NavigationBarView.h"
 
 @interface AlarmNavigationController ()<NavigationBarDelegate>
-
-@property(nonatomic,retain)NavigationBaseViewController* m_RootController;
-
-@property(nonatomic,retain)NavigationBaseViewController* m_CurrentController;
-
-@property(nonatomic,retain)NSMutableArray* controller;
+{
+    NavigationBarView* m_NavBar;
+    
+    NavigationBaseViewController* m_RootController;
+    
+    NavigationBaseViewController* m_CurrentController;
+    
+    NSMutableArray* controller;
+}
 
 @property (nonatomic,assign)id <AlarmNavigationDelegate> delegate;
 
@@ -36,7 +39,7 @@
 
 @synthesize m_CurrentController = _m_CurrentController;
 
-static const int ANIMATION_DURATION = 1.0;
+static const int ANIMATION_DURATION = 0.5;
 
 static NSString* PUSH_ANIMATION = @"Push_Animation";
 
@@ -45,6 +48,7 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
 -(id)initWithRootController:(NavigationBaseViewController*)RootController WithNavigationBar:(NavigationBarView*)navBar
 {
     if (self = [super initWithNibName:@"AlarmNavigationController" bundle:nil]) {
+        self.controller = [[NSMutableArray alloc]init];
         self.m_RootController = RootController;
         self.m_NavBar = navBar;
         self.m_NavBar.delegate = self;
@@ -57,7 +61,6 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     [super viewDidLoad];
     [self.view addSubview:self.m_NavBar];
     [self pushViewController:self.m_RootController withAnimation:NO];
-
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -72,14 +75,17 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     viewController.nav = self;
     self.m_CurrentController = viewController;
     
-    //Set RootViewController View
-    if (self.m_CurrentController == self.m_RootController) {
-        [self.m_NavBar SetLeftButtonHidden:YES];
-    }
-    
     //Set Animation
     if (animated) {
         [self AddAnimate:PUSH_ANIMATION];
+    }
+    
+    //Update NavigationBarInfo Before Push
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_PUSH];
+    
+    //Set RootViewController View
+    if (self.m_CurrentController == self.m_RootController) {
+        [self.m_NavBar SetLeftButtonHidden:YES];
     }
     
     //Show View of CurrentViewController
@@ -109,7 +115,10 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
         [self AddAnimate:POP_ANIMATION];
     }
     
-     [self ShowCurrentView];
+    //Update NavigationBarInfo Before Pop
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_POP];
+    
+    [self ShowCurrentView];
 }
 
 -(void)popToRootController:(BOOL)animated
@@ -126,8 +135,8 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     }];
     
     if ([self.controller lastObject] != self.m_RootController) {
-        NavigationBaseViewController* controller = [self.controller lastObject];
-        [controller.view removeFromSuperview];
+        NavigationBaseViewController* navigationBaseViewController = [self.controller lastObject];
+        [navigationBaseViewController.view removeFromSuperview];
         [self.controller removeAllObjects];
         controller = nil;
     }
@@ -136,8 +145,10 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     if (animated) {
         [self AddAnimate:POP_ANIMATION];
     }
-    
     self.m_CurrentController = self.m_RootController;
+    //Update NavigationBarInfo Before Pop
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_CLEAR];
+    
     [self ShowCurrentView];
 }
 
@@ -147,9 +158,7 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
 -(void)setHidden:(BOOL)hidden withAnimated:(BOOL)animated
 {
     if (animated) {
-        
     }
-    
     switch (hidden) {
         case YES:
             [self.m_NavBar removeFromSuperview];
@@ -168,16 +177,7 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     self.m_RootController = rootController;
 }
 
-//-(void)SetNavigationBar
-//{
-//    //Navigation Bar Intialization
-//    self.m_NavBar = [[NavigationBarView alloc]initNavigationBarWithLeftButton:CGRectZero RightButton:CGRectZero UsingFrameType:NAVIGATION_BUTTON_FRAME_DEAFULT];
-//    
-//    [self.m_NavBar SetTitle:@"test"];
-//    
-//    [self.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
-//    [self.m_NavBar SetRightButtonTitle:@"Right" State:UIControlStateNormal];
-//}
+#pragma Common Method
 
 /**
 	Add Animtate To CurrentView
@@ -185,13 +185,26 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
 -(void)AddAnimate:(NSString*)type
 {
     if (![self.view.layer animationForKey:type]) {
+        //remove all animations before Add New Animation
+        [self.view.layer removeAllAnimations];
         CATransition* animation = [CATransition animation];
         animation.duration = ANIMATION_DURATION;
         animation.timingFunction = UIViewAnimationCurveEaseInOut;
         animation.fillMode = kCAFillModeBackwards;
         animation.type = kCATransitionPush;
         animation.delegate = self;
-        animation.subtype = kCATransitionFromLeft;
+        
+        if ([type isEqualToString:PUSH_ANIMATION]) {
+            animation.subtype = kCATransitionFromRight;
+        }
+        else if ([type isEqualToString:POP_ANIMATION])
+        {
+            animation.subtype = kCATransitionFromLeft;
+        }
+        else
+        {
+            return;
+        }
         [self.view.layer addAnimation:animation forKey:type];
     }
 }

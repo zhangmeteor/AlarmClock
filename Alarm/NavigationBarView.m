@@ -20,25 +20,62 @@ typedef enum _navigation_type
 		/** NavigationBar Type */
 }NAVIGATION_TYPE;
 
+typedef enum _default_button_tag
+{
+	DEFAULT_LEFT_BUTTON_TAG = 1001,	/** 默认左侧按钮tag */
+	DEFAULT_RIGHT_BUTTON_TAG,	/** 默认右侧按钮tag */
+		/** NavigationBar 默认按钮Tag */
+}DEFAULT_BUTTON_TAG;
+
+/**
+ Save Default Frame Size defined by Initilization
+ */
+struct DefaultFrame
+{
+	CGRect LeftButtonFrame;	/** Default Left Button Frame*/
+	CGRect RightButtonFrame;	/** Default Right Button Frame */
+    CGRect LabelFrame;        /** Default Label Frame */
+    NAVIGATION_TYPE type; /** Default NavigationBar Type */
+};
+
 @interface NavigationBarView ()
-
-@property (nonatomic,retain) UIButton* LeftButton;
-
-@property (nonatomic,retain) UIButton* RightButton;
-
-@property (nonatomic,retain) UILabel* TitleLabel;
+{
+    NSMutableArray* LeftButtonItem;
+    
+    UIButton*  m_CurrentLeftButton;
+    
+    UIButton* m_NextLeftButton;
+    
+    NSMutableArray* RightButtonItem;
+    
+    UIButton* m_CurrentRightButton;
+    
+    UIButton* m_NextRightbutton;
+    
+    NSMutableArray* TitleLabelItem;
+    
+    UILabel* m_CurrentLabel;
+    
+    UILabel* m_NextLabel;
+    
+    struct DefaultFrame defaultFrame;
+    
+    BOOL LeftButtonModified;
+    
+    BOOL RightButtonModified;
+}
 
 @end
 
 @implementation NavigationBarView
 
-@synthesize LeftButton = _LeftButton;
+@synthesize LeftButtonItem = _LeftButtonItem;
 
-@synthesize RightButton = _RightButton;
+@synthesize RightButtonItem = _RightButtonItem;
 
 @synthesize delegate = _delegate;
 
-@synthesize TitleLabel = _TitleLabel;
+@synthesize TitleLabelItem = _TitleLabelItem;
 
 /**
 	initialization Method
@@ -47,29 +84,23 @@ typedef enum _navigation_type
 {
     if (self = [super init]) {
         self.frame = NAVIGATION_UI_FRAME;
-        //Add TitleLabel To View
-        self.TitleLabel = [[UILabel alloc]initWithFrame:NAVIGATION_UI_TITLE_FRAME];
-        [self.TitleLabel setTextAlignment:NSTextAlignmentCenter];
-        [self addSubview:self.TitleLabel];
-        
         //Defalut Frame Setting
         if (frameType == NAVIGATION_BUTTON_FRAME_DEAFULT) {
             LeftButtonframe = NAVIGATION_UI_LEFT_BUTTON_DEAFULT_FRAME;
             RightButtonframe = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
         }
         
-        switch (type) {
-            case NAVIGATION_TYPE_LEFT_BUTTON:
-                [self InitLeftButtonWithFrame:LeftButtonframe];
-                break;
-            case NAVIGATION_TYPE_RIGHT_BUTTON:
-                [self InitRightButtonWithFrame:RightButtonframe];
-                break;
-            case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
-                [self InitLeftButtonWithFrame:LeftButtonframe];
-                [self InitRightButtonWithFrame:RightButtonframe];
-                break;
-        }
+        //initialization Button Array
+        LeftButtonItem = [[NSMutableArray alloc]init];
+        RightButtonItem = [[NSMutableArray alloc]init];
+        
+        //Save Default Frame by Setting
+        defaultFrame.LeftButtonFrame = LeftButtonframe;
+        defaultFrame.RightButtonFrame = RightButtonframe;
+        defaultFrame .LabelFrame = NAVIGATION_UI_TITLE_FRAME;
+        defaultFrame.type = type;
+        
+        [self ResetNextButtonInfo];
     }
     return self;
 }
@@ -90,72 +121,245 @@ typedef enum _navigation_type
 }
 
 /**
-    Intialization NavigationBar button
+    Intialization NavigationBar button and label
  */
--(void)InitLeftButtonWithFrame:(CGRect)frame
+-(UIButton*)InitLeftButtonWithFrame:(CGRect)frame
 {
+    UIButton* LeftButton;
     if (IS_IOS_7) {
-       self.LeftButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        LeftButton = [UIButton buttonWithType:UIButtonTypeSystem];
     }
     else
     {
-        self.LeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        LeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     }
-    [self.LeftButton setFrame:frame];
-    [self.LeftButton addTarget:self action:@selector(LeftButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.LeftButton];
+    LeftButton.tag = DEFAULT_LEFT_BUTTON_TAG;
+    [LeftButton setFrame:frame];
+    [LeftButton addTarget:self action:@selector(LeftButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    return LeftButton;
 }
 
--(void)InitRightButtonWithFrame:(CGRect)frame
+-(UIButton*)InitRightButtonWithFrame:(CGRect)frame
 {
+   UIButton* RightButton;
     if (IS_IOS_7) {
-        self.RightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        RightButton = [UIButton buttonWithType:UIButtonTypeSystem];
     }
     else
     {
-        self.RightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        RightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     }
-    [self.RightButton setFrame:frame];
-    [self.RightButton addTarget:self action:@selector(RightButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.RightButton];
+    RightButton.tag = DEFAULT_RIGHT_BUTTON_TAG;
+    [RightButton setFrame:frame];
+    [RightButton addTarget:self action:@selector(RightButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    return RightButton;
+}
+
+-(UILabel*)InitLabelWithFrame:(CGRect)frame
+{
+    UILabel* label = [[UILabel alloc]initWithFrame:frame];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    return label;
 }
 
 /**
- Set Button Hidden
+ Default NavigationBar style
+ */
+-(void)SetNavigationBarAsDefault
+{
+    NSString* FillString = @"No View";
+    switch (defaultFrame.type) {
+        case NAVIGATION_TYPE_LEFT_BUTTON:
+            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+            [LeftButtonItem addObject:m_NextLeftButton];
+            [RightButtonItem addObject:FillString];
+            break;
+        case NAVIGATION_TYPE_RIGHT_BUTTON:
+            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
+            [RightButtonItem addObject:m_NextRightbutton];
+            [LeftButtonItem addObject:FillString];
+            break;
+        case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
+            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
+            [LeftButtonItem addObject:m_NextLeftButton];
+            [RightButtonItem addObject:m_NextRightbutton];
+            break;
+    }
+     m_NextLabel = [self InitLabelWithFrame:defaultFrame.LabelFrame];
+}
+
+/**
+    Add All View To NavigaitonBar
+ */
+-(void)AddAllCurrentStyleView
+{
+    switch (defaultFrame.type) {
+        case NAVIGATION_TYPE_LEFT_BUTTON:
+            [self addSubview:m_CurrentLeftButton];
+            if (m_CurrentRightButton) {
+                [self addSubview:m_CurrentRightButton];
+            }
+            break;
+        case NAVIGATION_TYPE_RIGHT_BUTTON:
+            [self addSubview:m_CurrentRightButton];
+            if (m_CurrentLeftButton) {
+                [self addSubview:m_CurrentLeftButton];
+            }
+            break;
+        case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
+            [self addSubview:m_CurrentLeftButton];
+            [self addSubview:m_CurrentRightButton];
+            break;
+    }
+    [self addSubview:m_CurrentLabel];
+}
+
+/**
+    Set Button Hidden
  */
 
 -(void)SetLeftButtonHidden:(BOOL)hidden
 {
-    self.LeftButton.hidden = hidden;
+    [m_CurrentLeftButton setHidden:hidden];
 }
 
 -(void)SetRightButtonHidden:(BOOL)hidden
 {
-    self.RightButton.hidden = hidden;
+    [m_CurrentRightButton setHidden:hidden];
+}
+
+/**
+ Set Button To NavigationBar
+ */
+-(void)SetLeftButtonItem:(UIButton*)btn
+{
+    if (m_CurrentLeftButton) {
+        [m_CurrentLeftButton removeFromSuperview];
+    }
+    m_CurrentLeftButton = btn;
+    [self addSubview:m_CurrentLeftButton];
+    [LeftButtonItem replaceObjectAtIndex:[LeftButtonItem count]-1 withObject:m_CurrentLeftButton];
+}
+
+-(void)SetRightButtonItem:(UIButton*)btn
+{
+    if (m_CurrentRightButton) {
+        [m_CurrentRightButton removeFromSuperview];
+    }
+    m_CurrentRightButton = btn;
+    [self addSubview:m_CurrentRightButton];
+    [RightButtonItem replaceObjectAtIndex:[RightButtonItem count]-1 withObject:m_CurrentRightButton];
 }
 
 #pragma Configure
 
 /**
-    Set NavigationBar Title
+ Update NavigationBar in different viewController
+ */
+-(void)UpdateNavigationBarWithType:(int)type
+{
+    switch (type) {
+        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+            [self SetNavigationBarAsDefault];
+            if ([LeftButtonItem count] != 0)
+            {
+                [m_CurrentLeftButton removeFromSuperview];
+                [m_CurrentRightButton removeFromSuperview];
+                [m_CurrentLabel removeFromSuperview];
+            }
+            m_CurrentLeftButton = m_NextLeftButton;
+            m_CurrentRightButton = m_NextRightbutton;
+            m_CurrentLabel = m_NextLabel;
+            [self AddAllCurrentStyleView];
+            break;
+        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+            [m_CurrentLeftButton removeFromSuperview];
+            [m_CurrentRightButton removeFromSuperview];
+            [m_CurrentLabel removeFromSuperview];
+            
+            [LeftButtonItem removeLastObject];
+            [RightButtonItem removeLastObject];
+            
+            m_CurrentLeftButton = [LeftButtonItem lastObject];
+            m_CurrentRightButton = [RightButtonItem lastObject];
+            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]) {
+                m_CurrentLeftButton = nil;
+            }
+            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]){
+                m_CurrentRightButton = nil;
+            }
+            m_CurrentLabel = [TitleLabelItem lastObject];
+            
+            [self AddAllCurrentStyleView];
+            break;
+        case UPDATE_NAVIGATIONBAR_TYPE_CLEAR:
+            [LeftButtonItem removeObjectsInRange:NSMakeRange(1, [LeftButtonItem count]-1)];
+            [RightButtonItem removeObjectsInRange:NSMakeRange(1, [RightButtonItem count]-1)];
+            [TitleLabelItem removeObjectsInRange:NSMakeRange(1, [TitleLabelItem count]-1)];
+            
+            m_CurrentLeftButton = [LeftButtonItem objectAtIndex:0];
+            m_CurrentRightButton = [RightButtonItem objectAtIndex:0];
+            m_CurrentLabel = [TitleLabelItem objectAtIndex:0];
+            [self AddAllCurrentStyleView];
+            break;
+    }
+    [self ResetNextButtonInfo];
+}
+
+/**
+	Reset Modified State
+ */
+-(void)ResetNextButtonInfo
+{
+    m_NextLeftButton = nil;
+    m_NextRightbutton = nil;
+}
+
+///**
+// Reset NavigationBar To Default
+// */
+//-(void)ResetNavigationBar
+//{
+//    self.LeftButton.hidden = NO;
+//    self.RightButton.hidden = NO;
+//    
+//    //Clear Button without Default Button
+//    [self.subviews enumerateObjectsUsingBlock:^(UIButton* btn, NSUInteger idx, BOOL* stop)
+//     {
+//         if (btn.tag == DEFAULT_LEFT_BUTTON_TAG || btn.tag == DEFAULT_RIGHT_BUTTON_TAG) {
+//         }
+//         else
+//         {
+//             if ([btn isKindOfClass:[UIButton class]]) {
+//                 [btn removeFromSuperview];
+//             }
+//         }
+//     }];
+//}
+
+/**
+ Set NavigationBar Title
  */
 -(void)SetTitle:(NSString*)title
 {
-    [self.TitleLabel setText:title];
+    [m_CurrentLabel setText:title];
 }
 
 -(void)SetTitleColor:(UIColor*)color
 {
-    [self.TitleLabel setTextColor:color];
+    [m_CurrentLabel setTextColor:color];
 }
 
 -(void)SetTitleFont:(UIFont*)font
 {
-    [self.TitleLabel setFont:font];
+    [m_CurrentLabel setFont:font];
 }
 
 /**
-	Set Background Color
+ Set Background Color
  */
 -(void)SetBackgroundColor:(UIColor*)color
 {
@@ -163,7 +367,7 @@ typedef enum _navigation_type
 }
 
 /**
-	Set Backgound Image
+ Set Backgound Image
  */
 -(void)SetBackgroundImage:(UIImage*)image
 {
@@ -171,21 +375,21 @@ typedef enum _navigation_type
 }
 
 /**
-	Set Button Title
+ Set Button Title
  */
 -(void)SetLeftButtonTitle:(NSString*)title State:(UIControlState)state
 {
-    [self.LeftButton setTitle:title forState:state];
+    [[LeftButtonItem lastObject] setTitle:title forState:state];
 }
 
 -(void)SetRightButtonTitle:(NSString*)title State:(UIControlState)state
 {
-    [self.RightButton setTitle:title forState:state];
+    [[RightButtonItem lastObject] setTitle:title forState:state];
 }
 
 #pragma DelegateMethod
 /**
-	Navigation Button Click Method
+ Navigation Button Click Method
  */
 -(void)LeftButtonClicked
 {
@@ -198,12 +402,12 @@ typedef enum _navigation_type
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

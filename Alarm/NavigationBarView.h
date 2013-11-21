@@ -17,9 +17,22 @@ typedef enum _navigation_button_frame
     /** Navigation Button Frame type */
 }NAVIGATION_BUTTON_FRAME;
 
+typedef enum _update_navigationbar_type
+{
+    UPDATE_NAVIGATIONBAR_TYPE_PUSH,
+    UPDATE_NAVIGATIONBAR_TYPE_POP,
+    UPDATE_NAVIGATIONBAR_TYPE_CLEAR,
+}UPDATE_NAVIGATIONBAR_TYPE;
+
 @interface NavigationBarView : UIView
 
 @property (nonatomic,assign) id<NavigationBarDelegate> delegate;
+
+@property (nonatomic,retain) NSMutableArray* LeftButtonItem;
+
+@property (nonatomic,retain) NSMutableArray* RightButtonItem;
+
+@property (nonatomic,retain) NSMutableArray* TitleLabelItem;
 
 /**
     initialization Method
@@ -43,6 +56,18 @@ typedef enum _navigation_button_frame
 -(void)SetLeftButtonHidden:(BOOL)hidden;
 
 -(void)SetRightButtonHidden:(BOOL)hidden;
+
+/**
+	Update NavigationBar in different viewController
+ */
+-(void)UpdateNavigationBarWithType:(int)type;
+
+/**
+	Set Button To NavigationBar
+ */
+-(void)SetLeftButtonItem:(UIButton*)btn;
+
+-(void)SetRightButtonItem:(UIButton*)btn;
 
 /**
 	Navigation Configure

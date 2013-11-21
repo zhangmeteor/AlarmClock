@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6106E071183DBADD00A1DC14 /* AddAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */; };
+		6106E072183DBADD00A1DC14 /* AddAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */; };
 		610929FE183B25CD0028B71F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610929FD183B25CD0028B71F /* UIKit.framework */; };
 		61092A00183B25CD0028B71F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610929FF183B25CD0028B71F /* Foundation.framework */; };
 		61092A02183B25CD0028B71F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61092A01183B25CD0028B71F /* CoreGraphics.framework */; };
@@ -40,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		48DF38B0DC59498888A58C86 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6106E06E183DBADD00A1DC14 /* AddAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAlarmViewController.h; sourceTree = "<group>"; };
+		6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAlarmViewController.m; sourceTree = "<group>"; };
+		6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAlarmViewController.xib; sourceTree = "<group>"; };
 		610929FA183B25CD0028B71F /* Alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610929FD183B25CD0028B71F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		610929FF183B25CD0028B71F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -224,6 +229,9 @@
 				61092A15183B25CE0028B71F /* AlarmSetViewController.h */,
 				61092A16183B25CE0028B71F /* AlarmSetViewController.m */,
 				61092A18183B25CE0028B71F /* AlarmSetViewController.xib */,
+				6106E06E183DBADD00A1DC14 /* AddAlarmViewController.h */,
+				6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */,
+				6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */,
 			);
 			name = Alarm;
 			sourceTree = "<group>";
@@ -333,6 +341,7 @@
 				61BB2E87183B3A98005E71AB /* DeathTimeViewController.xib in Resources */,
 				61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */,
 				61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */,
+				6106E072183DBADD00A1DC14 /* AddAlarmViewController.xib in Resources */,
 				61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */,
 				6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */,
 			);
@@ -380,6 +389,7 @@
 			files = (
 				61092A0A183B25CD0028B71F /* main.m in Sources */,
 				61092A0E183B25CE0028B71F /* AppDelegate.m in Sources */,
+				6106E071183DBADD00A1DC14 /* AddAlarmViewController.m in Sources */,
 				6111E6C4183C7AA600D77D96 /* NavigationBaseViewController.m in Sources */,
 				61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */,
 				61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */,

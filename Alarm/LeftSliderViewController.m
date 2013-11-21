@@ -16,7 +16,7 @@
 
 @implementation LeftSliderViewController
 
-static const double FunctionRowHeight = 50;
+static const double s_FunctionRowHeight = 50;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +41,7 @@ static const double FunctionRowHeight = 50;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return FunctionRowHeight;
+    return s_FunctionRowHeight;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:

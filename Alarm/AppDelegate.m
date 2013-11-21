@@ -32,7 +32,7 @@
 @synthesize NavBar = _NavBar;
 
 //侧边栏宽度
-static const double LeftSliderWidth = 150;
+static const double s_LeftSliderWidth = 150;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -50,7 +50,7 @@ static const double LeftSliderWidth = 150;
     self.pKRevealController = [PKRevealController revealControllerWithFrontViewController:self.viewController leftViewController:self.leftSliderViewController];
     
     //Configure
-    [self.pKRevealController setMinimumWidth:LeftSliderWidth maximumWidth:LeftSliderWidth forViewController:self.leftSliderViewController];
+    [self.pKRevealController setMinimumWidth:s_LeftSliderWidth maximumWidth:s_LeftSliderWidth forViewController:self.leftSliderViewController];
     self.pKRevealController.delegate = self;
     self.pKRevealController.animationDuration = 0.25;
     

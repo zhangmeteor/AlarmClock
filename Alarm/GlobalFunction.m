@@ -23,9 +23,9 @@ typedef enum _view_mode
 }VIEW_MODE;
 
 @implementation GlobalFunction
-static double m_CurrentViewModel = 0;
+static double s_CurrentViewModel = 0;
 
-static double m_FunctionCount = 6;
+static double s_FunctionCount = 6;
 
 static NSUInteger _deviceSystemMajorVersion = -1;
 
@@ -34,11 +34,11 @@ static NSUInteger _deviceSystemMajorVersion = -1;
  */
 +(void)SetGlobalViewState:(double)state
 {
-    m_CurrentViewModel = state;
+    s_CurrentViewModel = state;
 }
 +(double)GetGlobalViewState
 {
-    return m_CurrentViewModel;
+    return s_CurrentViewModel;
 }
 
 /**
@@ -46,7 +46,7 @@ static NSUInteger _deviceSystemMajorVersion = -1;
  */
 +(double)GetFunctionCount
 {
-    return m_FunctionCount;
+    return s_FunctionCount;
 }
 
 /**
