@@ -12,7 +12,7 @@
 
 #import "NavigationBarDelegate.h"
 
-@interface AlarmSetViewController ()
+@interface AlarmSetViewController () 
 
 @end
 

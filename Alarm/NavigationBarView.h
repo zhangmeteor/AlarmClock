@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NavigationBarDelegate.h"
+
 typedef enum _navigation_button_frame
 {
 	NAVIGATION_BUTTON_FRAME_DEAFULT,	/** Using Deafult Button Frame */
@@ -16,6 +18,8 @@ typedef enum _navigation_button_frame
 }NAVIGATION_BUTTON_FRAME;
 
 @interface NavigationBarView : UIView
+
+@property (nonatomic,assign) id<NavigationBarDelegate> delegate;
 
 /**
     initialization Method
@@ -32,6 +36,13 @@ typedef enum _navigation_button_frame
 -(void)LeftButtonClicked;
 
 -(void)RightButtonClicked;
+
+/**
+	Set Button Hidden
+ */
+-(void)SetLeftButtonHidden:(BOOL)hidden;
+
+-(void)SetRightButtonHidden:(BOOL)hidden;
 
 /**
 	Navigation Configure
