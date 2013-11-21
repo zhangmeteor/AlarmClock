@@ -12,6 +12,6 @@
 
 @interface NavigationBaseViewController : UIViewController
 
-@property (nonatomic,retain)AlarmNavigationController* nav;
+@property (nonatomic,strong)AlarmNavigationController* nav;
 
 @end

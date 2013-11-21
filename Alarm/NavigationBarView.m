@@ -12,32 +12,6 @@
 
 #import "GlobalFunction.h"
 
-typedef enum _navigation_type
-{
-	NAVIGATION_TYPE_LEFT_BUTTON,	/** 左侧有按钮 */
-	NAVIGATION_TYPE_RIGHT_BUTTON,	/** 右侧有按钮 */
-	NAVIGATION_TYPE_LEFT_RIGHT_BUTTON,	/** 两边都有按钮 */
-		/** NavigationBar Type */
-}NAVIGATION_TYPE;
-
-typedef enum _default_button_tag
-{
-	DEFAULT_LEFT_BUTTON_TAG = 1001,	/** 默认左侧按钮tag */
-	DEFAULT_RIGHT_BUTTON_TAG,	/** 默认右侧按钮tag */
-		/** NavigationBar 默认按钮Tag */
-}DEFAULT_BUTTON_TAG;
-
-/**
- Save Default Frame Size defined by Initilization
- */
-struct DefaultFrame
-{
-	CGRect LeftButtonFrame;	/** Default Left Button Frame*/
-	CGRect RightButtonFrame;	/** Default Right Button Frame */
-    CGRect LabelFrame;        /** Default Label Frame */
-    NAVIGATION_TYPE type; /** Default NavigationBar Type */
-};
-
 @interface NavigationBarView ()
 {
     NSMutableArray* LeftButtonItem;
@@ -55,8 +29,8 @@ struct DefaultFrame
     NSMutableArray* TitleLabelItem;
     
     UILabel* m_CurrentLabel;
-    
-    UILabel* m_NextLabel;
+//    
+//    UILabel* m_NextLabel;
     
     struct DefaultFrame defaultFrame;
     
@@ -90,15 +64,19 @@ struct DefaultFrame
             RightButtonframe = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
         }
         
-        //initialization Button Array
-        LeftButtonItem = [[NSMutableArray alloc]init];
-        RightButtonItem = [[NSMutableArray alloc]init];
-        
         //Save Default Frame by Setting
         defaultFrame.LeftButtonFrame = LeftButtonframe;
         defaultFrame.RightButtonFrame = RightButtonframe;
         defaultFrame .LabelFrame = NAVIGATION_UI_TITLE_FRAME;
         defaultFrame.type = type;
+        
+        //initialization Button Array
+        LeftButtonItem = [[NSMutableArray alloc]init];
+        RightButtonItem = [[NSMutableArray alloc]init];
+        TitleLabelItem = [[NSMutableArray alloc]init];
+        
+        //intialization Label
+        m_CurrentLabel = [self InitLabelWithFrame:defaultFrame.LabelFrame];
         
         [self ResetNextButtonInfo];
     }
@@ -188,7 +166,7 @@ struct DefaultFrame
             [RightButtonItem addObject:m_NextRightbutton];
             break;
     }
-     m_NextLabel = [self InitLabelWithFrame:defaultFrame.LabelFrame];
+    [TitleLabelItem addObject:@""];
 }
 
 /**
@@ -262,6 +240,7 @@ struct DefaultFrame
 -(void)UpdateNavigationBarWithType:(int)type
 {
     switch (type) {
+    //Push Method
         case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
             [self SetNavigationBarAsDefault];
             if ([LeftButtonItem count] != 0)
@@ -272,16 +251,17 @@ struct DefaultFrame
             }
             m_CurrentLeftButton = m_NextLeftButton;
             m_CurrentRightButton = m_NextRightbutton;
-            m_CurrentLabel = m_NextLabel;
+            m_CurrentLabel.text = @"";
             [self AddAllCurrentStyleView];
             break;
+    //Pop Method
         case UPDATE_NAVIGATIONBAR_TYPE_POP:
             [m_CurrentLeftButton removeFromSuperview];
             [m_CurrentRightButton removeFromSuperview];
-            [m_CurrentLabel removeFromSuperview];
             
             [LeftButtonItem removeLastObject];
             [RightButtonItem removeLastObject];
+            [TitleLabelItem removeLastObject];
             
             m_CurrentLeftButton = [LeftButtonItem lastObject];
             m_CurrentRightButton = [RightButtonItem lastObject];
@@ -291,10 +271,10 @@ struct DefaultFrame
             if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]){
                 m_CurrentRightButton = nil;
             }
-            m_CurrentLabel = [TitleLabelItem lastObject];
-            
+            m_CurrentLabel.text = [TitleLabelItem lastObject];
             [self AddAllCurrentStyleView];
             break;
+    //Clear All ViewController except rootViewController
         case UPDATE_NAVIGATIONBAR_TYPE_CLEAR:
             [LeftButtonItem removeObjectsInRange:NSMakeRange(1, [LeftButtonItem count]-1)];
             [RightButtonItem removeObjectsInRange:NSMakeRange(1, [RightButtonItem count]-1)];
@@ -346,6 +326,7 @@ struct DefaultFrame
 -(void)SetTitle:(NSString*)title
 {
     [m_CurrentLabel setText:title];
+    [TitleLabelItem replaceObjectAtIndex:[TitleLabelItem count]-1 withObject:title];
 }
 
 -(void)SetTitleColor:(UIColor*)color

@@ -24,15 +24,42 @@ typedef enum _update_navigationbar_type
     UPDATE_NAVIGATIONBAR_TYPE_CLEAR,
 }UPDATE_NAVIGATIONBAR_TYPE;
 
+
+typedef enum _navigation_type
+{
+	NAVIGATION_TYPE_LEFT_BUTTON,	/** 左侧有按钮 */
+	NAVIGATION_TYPE_RIGHT_BUTTON,	/** 右侧有按钮 */
+	NAVIGATION_TYPE_LEFT_RIGHT_BUTTON,	/** 两边都有按钮 */
+    /** NavigationBar Type */
+}NAVIGATION_TYPE;
+
+typedef enum _default_button_tag
+{
+	DEFAULT_LEFT_BUTTON_TAG = 1001,	/** 默认左侧按钮tag */
+	DEFAULT_RIGHT_BUTTON_TAG,	/** 默认右侧按钮tag */
+    /** NavigationBar 默认按钮Tag */
+}DEFAULT_BUTTON_TAG;
+
+/**
+ Save Default Frame Size defined by Initilization
+ */
+struct DefaultFrame
+{
+	CGRect LeftButtonFrame;	/** Default Left Button Frame*/
+	CGRect RightButtonFrame;	/** Default Right Button Frame */
+    CGRect LabelFrame;        /** Default Label Frame */
+    NAVIGATION_TYPE type; /** Default NavigationBar Type */
+};
+
 @interface NavigationBarView : UIView
 
-@property (nonatomic,assign) id<NavigationBarDelegate> delegate;
+@property (nonatomic,weak) id<NavigationBarDelegate> delegate;
 
-@property (nonatomic,retain) NSMutableArray* LeftButtonItem;
+@property (nonatomic,strong,readonly) NSMutableArray* LeftButtonItem;
 
-@property (nonatomic,retain) NSMutableArray* RightButtonItem;
+@property (nonatomic,strong,readonly) NSMutableArray* RightButtonItem;
 
-@property (nonatomic,retain) NSMutableArray* TitleLabelItem;
+@property (nonatomic,strong,readonly) NSMutableArray* TitleLabelItem;
 
 /**
     initialization Method

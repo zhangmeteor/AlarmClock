@@ -13,17 +13,16 @@
 #import "NavigationBarView.h"
 
 @interface AlarmNavigationController ()<NavigationBarDelegate>
-{
-    NavigationBarView* m_NavBar;
-    
-    NavigationBaseViewController* m_RootController;
-    
-    NavigationBaseViewController* m_CurrentController;
-    
-    NSMutableArray* controller;
-}
 
-@property (nonatomic,assign)id <AlarmNavigationDelegate> delegate;
+@property (nonatomic,weak)id <AlarmNavigationDelegate> delegate;
+
+@property(nonatomic,strong)NavigationBarView* m_NavBar;
+
+@property(nonatomic,strong)NavigationBaseViewController* m_RootController;
+
+@property(nonatomic,strong)NavigationBaseViewController* m_CurrentController;
+
+@property(nonatomic,strong)NSMutableArray* controller;
 
 @end
 
@@ -138,7 +137,7 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
         NavigationBaseViewController* navigationBaseViewController = [self.controller lastObject];
         [navigationBaseViewController.view removeFromSuperview];
         [self.controller removeAllObjects];
-        controller = nil;
+        self.controller = nil;
     }
     
     //Set Animation

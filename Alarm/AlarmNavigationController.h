@@ -14,13 +14,13 @@
 
 @interface AlarmNavigationController : UIViewController
 
-@property(nonatomic,retain)NavigationBarView* m_NavBar;
+@property(nonatomic,strong,readonly)NavigationBarView* m_NavBar;
 
-@property(nonatomic,retain)NavigationBaseViewController* m_RootController;
+@property(nonatomic,strong,readonly)NavigationBaseViewController* m_RootController;
 
-@property(nonatomic,retain)NavigationBaseViewController* m_CurrentController;
+@property(nonatomic,strong,readonly)NavigationBaseViewController* m_CurrentController;
 
-@property(nonatomic,retain)NSMutableArray* controller;
+@property(nonatomic,strong,readonly)NSMutableArray* controller;
 
 -(id)initWithRootController:(NavigationBaseViewController*)RootController WithNavigationBar:(NavigationBarView*)navBar;
 
