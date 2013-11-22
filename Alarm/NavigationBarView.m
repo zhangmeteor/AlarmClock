@@ -341,8 +341,12 @@ static NSString* const DefaultTitle = @"";
  */
 -(void)DeleteButtonWithIdentify:(NSString*)Identify
 {
-    LeftButtonItem[Identify] = nil;
-    RightButtonItem[Identify] = nil;
+    if (LeftButtonItem[Identify]) {
+        [LeftButtonItem removeObjectForKey:Identify];
+    }
+    if (RightButtonItem[Identify]) {
+        [RightButtonItem removeObjectForKey:Identify];
+    }
 }
 
 /**
@@ -392,8 +396,6 @@ static NSString* const DefaultTitle = @"";
 -(void)CommonToRootView:(NSString*)Identify
 {
     [self RemoveCurrentView];
-    
-
 }
 
 /**
@@ -487,7 +489,9 @@ static NSString* const DefaultTitle = @"";
             break;
         case UPDATE_NAVIGATIONBAR_TYPE_POP:
             //Delete Current ViewController Title
-            TitleLabelItem[viewController.IdentifyID] = nil;
+            if (TitleLabelItem[viewController.IdentifyID]) {
+                [TitleLabelItem removeObjectForKey:viewController.IdentifyID];
+            }
             break;
             //Clear All ViewController except rootViewController
         case UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW:
