@@ -14,6 +14,10 @@
 
 @interface AlarmNavigationController : UIViewController
 
+extern NSString* const PUSH_ANIMATION;
+
+extern NSString* const POP_ANIMATION;
+
 @property(nonatomic,strong,readonly)NavigationBarView* m_NavBar;
 
 @property(nonatomic,strong,readonly)NavigationBaseViewController* m_RootController;

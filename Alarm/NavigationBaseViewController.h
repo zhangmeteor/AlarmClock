@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong)AlarmNavigationController* nav;
 
+@property(nonatomic,strong,readonly)NSString* IdentifyID;
+
 @end

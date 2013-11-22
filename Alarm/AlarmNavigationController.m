@@ -40,9 +40,9 @@
 
 static const int ANIMATION_DURATION = 0.5;
 
-static NSString* PUSH_ANIMATION = @"Push_Animation";
+NSString* const PUSH_ANIMATION = @"Push_Animation";
 
-static NSString* POP_ANIMATION = @"Pop_Animation";
+NSString* const POP_ANIMATION = @"Pop_Animation";
 
 -(id)initWithRootController:(NavigationBaseViewController*)RootController WithNavigationBar:(NavigationBarView*)navBar
 {
@@ -79,13 +79,13 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
         [self AddAnimate:PUSH_ANIMATION];
     }
     
-    //Update NavigationBarInfo Before Push
-    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_PUSH];
-    
     //Set RootViewController View
     if (self.m_CurrentController == self.m_RootController) {
         [self.m_NavBar SetLeftButtonHidden:YES];
     }
+    
+    //Update NavigationBarInfo Before Push
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_PUSH ViewController:self.m_CurrentController];
     
     //Show View of CurrentViewController
     [self.view addSubview:viewController.view];
@@ -115,9 +115,10 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
     }
     
     //Update NavigationBarInfo Before Pop
-    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_POP];
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_POP ViewController:self.m_CurrentController];
     
     [self ShowCurrentView];
+    
 }
 
 -(void)popToRootController:(BOOL)animated
@@ -145,8 +146,9 @@ static NSString* POP_ANIMATION = @"Pop_Animation";
         [self AddAnimate:POP_ANIMATION];
     }
     self.m_CurrentController = self.m_RootController;
+    
     //Update NavigationBarInfo Before Pop
-    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_CLEAR];
+    [self.m_NavBar UpdateNavigationBarWithType:UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW ViewController:self.m_CurrentController];
     
     [self ShowCurrentView];
 }

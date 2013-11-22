@@ -21,7 +21,7 @@ typedef enum _update_navigationbar_type
 {
     UPDATE_NAVIGATIONBAR_TYPE_PUSH,
     UPDATE_NAVIGATIONBAR_TYPE_POP,
-    UPDATE_NAVIGATIONBAR_TYPE_CLEAR,
+    UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW,
 }UPDATE_NAVIGATIONBAR_TYPE;
 
 
@@ -51,15 +51,17 @@ struct DefaultFrame
     NAVIGATION_TYPE type; /** Default NavigationBar Type */
 };
 
+@class NavigationBaseViewController;
+
 @interface NavigationBarView : UIView
 
 @property (nonatomic,weak) id<NavigationBarDelegate> delegate;
 
-@property (nonatomic,strong,readonly) NSMutableArray* LeftButtonItem;
+@property (nonatomic,strong,readonly) NSMutableDictionary* LeftButtonItem;
 
-@property (nonatomic,strong,readonly) NSMutableArray* RightButtonItem;
+@property (nonatomic,strong,readonly) NSMutableDictionary* RightButtonItem;
 
-@property (nonatomic,strong,readonly) NSMutableArray* TitleLabelItem;
+@property (nonatomic,strong,readonly) NSMutableDictionary* TitleLabelItem;
 
 /**
     initialization Method
@@ -87,8 +89,7 @@ struct DefaultFrame
 /**
 	Update NavigationBar in different viewController
  */
--(void)UpdateNavigationBarWithType:(int)type;
-
+-(void)UpdateNavigationBarWithType:(int)type ViewController:(NavigationBaseViewController*)viewController;
 /**
 	Set Button To NavigationBar
  */

@@ -14,19 +14,19 @@
 
 @interface NavigationBarView ()
 {
-    NSMutableArray* LeftButtonItem;
+    NSMutableDictionary* LeftButtonItem;
     
     UIButton*  m_CurrentLeftButton;
     
     UIButton* m_NextLeftButton;
     
-    NSMutableArray* RightButtonItem;
+    NSMutableDictionary* RightButtonItem;
     
     UIButton* m_CurrentRightButton;
     
     UIButton* m_NextRightbutton;
     
-    NSMutableArray* TitleLabelItem;
+    NSMutableDictionary* TitleLabelItem;
     
     UILabel* m_CurrentLabel;
 //    
@@ -37,7 +37,15 @@
     BOOL LeftButtonModified;
     
     BOOL RightButtonModified;
+    
+    NSString* m_CurrentIdentifyID;
 }
+
+@property (nonatomic,strong,readwrite) NSMutableDictionary* LeftButtonItem;
+
+@property (nonatomic,strong,readwrite) NSMutableDictionary* RightButtonItem;
+
+@property (nonatomic,strong,readwrite) NSMutableDictionary* TitleLabelItem;
 
 @end
 
@@ -50,6 +58,8 @@
 @synthesize delegate = _delegate;
 
 @synthesize TitleLabelItem = _TitleLabelItem;
+
+static NSString* const DefaultTitle = @"";
 
 /**
 	initialization Method
@@ -71,9 +81,9 @@
         defaultFrame.type = type;
         
         //initialization Button Array
-        LeftButtonItem = [[NSMutableArray alloc]init];
-        RightButtonItem = [[NSMutableArray alloc]init];
-        TitleLabelItem = [[NSMutableArray alloc]init];
+        LeftButtonItem = [@{}mutableCopy];
+        _RightButtonItem = [@{}mutableCopy];
+        TitleLabelItem = [@{}mutableCopy];
         
         //intialization Label
         m_CurrentLabel = [self InitLabelWithFrame:defaultFrame.LabelFrame];
@@ -141,33 +151,32 @@
     [label setTextAlignment:NSTextAlignmentCenter];
     return label;
 }
-
-/**
- Default NavigationBar style
- */
--(void)SetNavigationBarAsDefault
-{
-    NSString* FillString = @"No View";
-    switch (defaultFrame.type) {
-        case NAVIGATION_TYPE_LEFT_BUTTON:
-            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
-            [LeftButtonItem addObject:m_NextLeftButton];
-            [RightButtonItem addObject:FillString];
-            break;
-        case NAVIGATION_TYPE_RIGHT_BUTTON:
-            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
-            [RightButtonItem addObject:m_NextRightbutton];
-            [LeftButtonItem addObject:FillString];
-            break;
-        case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
-            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
-            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
-            [LeftButtonItem addObject:m_NextLeftButton];
-            [RightButtonItem addObject:m_NextRightbutton];
-            break;
-    }
-    [TitleLabelItem addObject:@""];
-}
+//
+///**
+// Default NavigationBar style
+// */
+//-(void)SetNavigationBarAsDefault
+//{
+//    switch (defaultFrame.type) {
+//        case NAVIGATION_TYPE_LEFT_BUTTON:
+//            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+//            [LeftButtonItem addObject:m_NextLeftButton];
+//            [RightButtonItem addObject:FillString];
+//            break;
+//        case NAVIGATION_TYPE_RIGHT_BUTTON:
+//            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
+//            [RightButtonItem addObject:m_NextRightbutton];
+//            [LeftButtonItem addObject:FillString];
+//            break;
+//        case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
+//            m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+//            m_NextRightbutton = [self InitRightButtonWithFrame:defaultFrame.RightButtonFrame];
+//            [LeftButtonItem addObject:m_NextLeftButton];
+//            [RightButtonItem addObject:m_NextRightbutton];
+//            break;
+//    }
+//    [TitleLabelItem addObject:@""];
+//}
 
 /**
     Add All View To NavigaitonBar
@@ -218,8 +227,13 @@
         [m_CurrentLeftButton removeFromSuperview];
     }
     m_CurrentLeftButton = btn;
+//    if ([[LeftButtonItem allKeysForObject:m_CurrentLeftButton]count]) {
+//        NSString* key = [[LeftButtonItem allKeysForObject:m_CurrentLeftButton]objectAtIndex:0];
+//        LeftButtonItem[key] = btn;
+//        m_CurrentLeftButton = btn;
+    LeftButtonItem[m_CurrentIdentifyID] = m_CurrentLeftButton;
     [self addSubview:m_CurrentLeftButton];
-    [LeftButtonItem replaceObjectAtIndex:[LeftButtonItem count]-1 withObject:m_CurrentLeftButton];
+//    }
 }
 
 -(void)SetRightButtonItem:(UIButton*)btn
@@ -228,8 +242,13 @@
         [m_CurrentRightButton removeFromSuperview];
     }
     m_CurrentRightButton = btn;
+    //    if ([[RightButtonItem allKeysForObject:m_CurrentRightButton]count]) {
+    //        NSString* key = [[RightButtonItem allKeysForObject:m_CurrentRightButton]objectAtIndex:0];
+    //        RightButtonItem[key] = btn;
+    //        m_CurrentRightButton = btn;
+    RightButtonItem[m_CurrentIdentifyID] = m_CurrentRightButton;
     [self addSubview:m_CurrentRightButton];
-    [RightButtonItem replaceObjectAtIndex:[RightButtonItem count]-1 withObject:m_CurrentRightButton];
+    //    }
 }
 
 #pragma Configure
@@ -237,56 +256,250 @@
 /**
  Update NavigationBar in different viewController
  */
--(void)UpdateNavigationBarWithType:(int)type
+-(void)UpdateNavigationBarWithType:(int)type ViewController:(NavigationBaseViewController*)viewController
 {
-    switch (type) {
-    //Push Method
-        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
-            [self SetNavigationBarAsDefault];
-            if ([LeftButtonItem count] != 0)
-            {
-                [m_CurrentLeftButton removeFromSuperview];
-                [m_CurrentRightButton removeFromSuperview];
-                [m_CurrentLabel removeFromSuperview];
-            }
-            m_CurrentLeftButton = m_NextLeftButton;
-            m_CurrentRightButton = m_NextRightbutton;
-            m_CurrentLabel.text = @"";
-            [self AddAllCurrentStyleView];
+    //Obtain NextViewID and set current view IdentifyID equal to NextViewID
+    m_CurrentIdentifyID = viewController.IdentifyID;
+    
+    switch (defaultFrame.type) {
+        case NAVIGATION_TYPE_LEFT_BUTTON:
+            [self UpdateLeftButtonWithType:type ViewController:viewController];
             break;
-    //Pop Method
-        case UPDATE_NAVIGATIONBAR_TYPE_POP:
-            [m_CurrentLeftButton removeFromSuperview];
-            [m_CurrentRightButton removeFromSuperview];
-            
-            [LeftButtonItem removeLastObject];
-            [RightButtonItem removeLastObject];
-            [TitleLabelItem removeLastObject];
-            
-            m_CurrentLeftButton = [LeftButtonItem lastObject];
-            m_CurrentRightButton = [RightButtonItem lastObject];
-            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]) {
-                m_CurrentLeftButton = nil;
-            }
-            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]){
-                m_CurrentRightButton = nil;
-            }
-            m_CurrentLabel.text = [TitleLabelItem lastObject];
-            [self AddAllCurrentStyleView];
+        case NAVIGATION_TYPE_RIGHT_BUTTON:
+            [self UpdateRightButtonWithType:type ViewController:viewController];
             break;
-    //Clear All ViewController except rootViewController
-        case UPDATE_NAVIGATIONBAR_TYPE_CLEAR:
-            [LeftButtonItem removeObjectsInRange:NSMakeRange(1, [LeftButtonItem count]-1)];
-            [RightButtonItem removeObjectsInRange:NSMakeRange(1, [RightButtonItem count]-1)];
-            [TitleLabelItem removeObjectsInRange:NSMakeRange(1, [TitleLabelItem count]-1)];
-            
-            m_CurrentLeftButton = [LeftButtonItem objectAtIndex:0];
-            m_CurrentRightButton = [RightButtonItem objectAtIndex:0];
-            m_CurrentLabel = [TitleLabelItem objectAtIndex:0];
-            [self AddAllCurrentStyleView];
+        case NAVIGATION_TYPE_LEFT_RIGHT_BUTTON:
+            [self UpdateLeftButtonAndRightButtonWithType:type ViewController:viewController];
             break;
     }
+    [self UpdateTitleLabelWithType:type ViewController:viewController];
+    
+//    switch (type) {
+//    //Push Method
+//        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+////            [self SetNavigationBarAsDefault];
+//            if ([LeftButtonItem count] != 0)
+//            {
+//                [m_CurrentLeftButton removeFromSuperview];
+//                [m_CurrentRightButton removeFromSuperview];
+//                [m_CurrentLabel removeFromSuperview];
+//            }
+//            m_CurrentLeftButton = m_NextLeftButton;
+//            m_CurrentRightButton = m_NextRightbutton;
+//            m_CurrentLabel.text = @"";
+//            [self AddAllCurrentStyleView];
+//            break;
+//    //Pop Method
+//        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+//            [m_CurrentLeftButton removeFromSuperview];
+//            [m_CurrentRightButton removeFromSuperview];
+//            
+//            [LeftButtonItem removeLastObject];
+//            [RightButtonItem removeLastObject];
+//            [TitleLabelItem removeLastObject];
+//            
+//            m_CurrentLeftButton = [LeftButtonItem lastObject];
+//            m_CurrentRightButton = [RightButtonItem lastObject];
+//            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]) {
+//                m_CurrentLeftButton = nil;
+//            }
+//            if ([[LeftButtonItem lastObject] isKindOfClass:[NSString class]]){
+//                m_CurrentRightButton = nil;
+//            }
+//            m_CurrentLabel.text = [TitleLabelItem lastObject];
+//            [self AddAllCurrentStyleView];
+//            break;
+//    //Clear All ViewController except rootViewController
+//        case UPDATE_NAVIGATIONBAR_TYPE_CLEAR:
+//            [LeftButtonItem removeObjectsInRange:NSMakeRange(1, [LeftButtonItem count]-1)];
+//            [RightButtonItem removeObjectsInRange:NSMakeRange(1, [RightButtonItem count]-1)];
+//            [TitleLabelItem removeObjectsInRange:NSMakeRange(1, [TitleLabelItem count]-1)];
+//            
+//            m_CurrentLeftButton = [LeftButtonItem objectAtIndex:0];
+//            m_CurrentRightButton = [RightButtonItem objectAtIndex:0];
+//            m_CurrentLabel = [TitleLabelItem objectAtIndex:0];
+//            [self AddAllCurrentStyleView];
+//            break;
+//    }
     [self ResetNextButtonInfo];
+}
+
+/**
+	Remove Button View And Set Title Default
+ */
+-(void)RemoveCurrentView
+{
+    if ([LeftButtonItem count] != 0)
+    {
+        [m_CurrentLeftButton removeFromSuperview];
+        [m_CurrentRightButton removeFromSuperview];
+    }
+}
+
+/**
+	Delete CurrentButton Information from ButtonDictionary
+ */
+-(void)DeleteButtonWithIdentify:(NSString*)Identify
+{
+    LeftButtonItem[Identify] = nil;
+    RightButtonItem[Identify] = nil;
+}
+
+/**
+    Instead NavigationBar Button from current button With Next button
+ */
+-(void)ChangeCurrentButtonWithNextCurrentButton
+{
+    m_CurrentLeftButton = m_NextLeftButton;
+    m_CurrentRightButton = m_NextRightbutton;
+}
+
+/**
+	Share Code With UpdateNavigationbar
+ */
+-(void)CommonPushView:(NSString*)Identify
+{
+    //Remove Current View
+    [self RemoveCurrentView];
+    
+    //Set NavigationBar Views of Next ViewController
+    if (LeftButtonItem[Identify]) {
+        [self addSubview:m_NextLeftButton];
+    }
+    if (RightButtonItem[Identify]) {
+        [self addSubview:m_NextRightbutton];
+    }
+    [self ChangeCurrentButtonWithNextCurrentButton];
+}
+
+-(void)CommonPopView:(NSString*)Identify
+{
+    //Remove Current View
+    [self RemoveCurrentView];
+    
+    //Delete ViewController
+    [self DeleteButtonWithIdentify:Identify];
+    
+    //Add View to Navigationbar
+    if ((m_CurrentLeftButton = LeftButtonItem[Identify])) {
+        [self addSubview:m_CurrentRightButton];
+    }
+    if ((m_CurrentRightButton = RightButtonItem[Identify])) {
+        [self addSubview:m_CurrentRightButton];
+    }
+}
+
+-(void)CommonToRootView:(NSString*)Identify
+{
+    [self RemoveCurrentView];
+    
+
+}
+
+/**
+	All Kind of type Update Method
+ */
+-(void)UpdateLeftButtonWithType:(UPDATE_NAVIGATIONBAR_TYPE)type ViewController:(NavigationBaseViewController*)viewController
+{
+    NSString* Identify = viewController.IdentifyID;
+    switch (type) {
+            //Push Method
+        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+            //Initilization Default View
+            if (!(m_NextLeftButton = LeftButtonItem[Identify])) {
+                m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+                LeftButtonItem[Identify] = m_NextLeftButton;
+            }
+            m_NextRightbutton = RightButtonItem[Identify];
+            //Using Common Code
+            [self CommonPushView:Identify];
+            break;
+            //Pop Method
+        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+            [self CommonPopView:Identify];
+            break;
+            //Clear All ViewController except rootViewController
+        case UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW:
+            [self CommonToRootView:Identify];
+            break;
+    }
+}
+
+-(void)UpdateRightButtonWithType:(UPDATE_NAVIGATIONBAR_TYPE)type ViewController:(NavigationBaseViewController*)viewController
+{
+    NSString* Identify = viewController.IdentifyID;
+    switch (type) {
+            //Push Method
+        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+            //Initilization Default View
+            if (!(m_NextRightbutton = RightButtonItem[Identify])) {
+                m_NextRightbutton = [self InitLeftButtonWithFrame:defaultFrame.RightButtonFrame];
+                RightButtonItem[Identify] = m_NextRightbutton;
+            }
+            m_NextLeftButton = LeftButtonItem[Identify];
+            //Using Common Code
+            [self CommonPushView:Identify];
+            break;
+            //Pop Method
+        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+            [self CommonPopView:Identify];
+            break;
+            //Clear All ViewController except rootViewController
+        case UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW:
+            [self CommonToRootView:Identify];
+            break;
+    }
+}
+
+-(void)UpdateLeftButtonAndRightButtonWithType:(UPDATE_NAVIGATIONBAR_TYPE)type ViewController:(NavigationBaseViewController*)viewController
+{
+    NSString* Identify = viewController.IdentifyID;
+    switch (type) {
+            //Push Method
+        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+            //Initilization Default View
+            if (!(m_NextLeftButton = LeftButtonItem[Identify])) {
+                m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+                LeftButtonItem[Identify] = m_NextLeftButton;
+            }
+            if (!(m_NextRightbutton = RightButtonItem[Identify])) {
+                m_NextRightbutton = [self InitLeftButtonWithFrame:defaultFrame.RightButtonFrame];
+                RightButtonItem[Identify] = m_NextRightbutton;
+            }
+            //Using Common Code
+            [self CommonPushView:Identify];
+            break;
+            //Pop Method
+        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+            [self CommonPopView:Identify];
+            break;
+            //Clear All ViewController except rootViewController
+        case UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW:
+            [self CommonToRootView:Identify];
+            break;
+    }
+}
+
+-(void)UpdateTitleLabelWithType:(UPDATE_NAVIGATIONBAR_TYPE)type ViewController:(NavigationBaseViewController*)viewController
+{
+    switch (type) {
+        case UPDATE_NAVIGATIONBAR_TYPE_PUSH:
+            break;
+        case UPDATE_NAVIGATIONBAR_TYPE_POP:
+            //Delete Current ViewController Title
+            TitleLabelItem[viewController.IdentifyID] = nil;
+            break;
+            //Clear All ViewController except rootViewController
+        case UPDATE_NAVIGATIONBAR_TYPE_TO_ROOTVIEW:
+            break;
+    }
+    if (TitleLabelItem[viewController.IdentifyID]) {
+        m_CurrentLabel.text = TitleLabelItem[viewController.IdentifyID];
+    }
+    else
+    {
+        m_CurrentLabel.text = DefaultTitle;
+    }
 }
 
 /**
@@ -325,8 +538,8 @@
  */
 -(void)SetTitle:(NSString*)title
 {
-    [m_CurrentLabel setText:title];
-    [TitleLabelItem replaceObjectAtIndex:[TitleLabelItem count]-1 withObject:title];
+        TitleLabelItem[m_CurrentIdentifyID] = title;
+        [m_CurrentLabel setText:title];
 }
 
 -(void)SetTitleColor:(UIColor*)color
@@ -360,12 +573,18 @@
  */
 -(void)SetLeftButtonTitle:(NSString*)title State:(UIControlState)state
 {
-    [[LeftButtonItem lastObject] setTitle:title forState:state];
+    if ([[LeftButtonItem allKeysForObject:m_CurrentLeftButton]count]) {
+        NSString* key = [[LeftButtonItem allKeysForObject:m_CurrentLeftButton]objectAtIndex:0];
+        [LeftButtonItem[key] setTitle:title forState:state];
+    }
 }
 
 -(void)SetRightButtonTitle:(NSString*)title State:(UIControlState)state
 {
-    [[RightButtonItem lastObject] setTitle:title forState:state];
+    if ([[RightButtonItem allKeysForObject:m_CurrentRightButton]count]) {
+        NSString* key = [[RightButtonItem allKeysForObject:m_CurrentRightButton]objectAtIndex:0];
+        [RightButtonItem[key] setTitle:title forState:state];
+    }
 }
 
 #pragma DelegateMethod

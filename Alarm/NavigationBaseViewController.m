@@ -11,18 +11,31 @@
 #import "AlarmNavigationController.h"
 
 @interface NavigationBaseViewController ()
+
+@property(nonatomic,strong,readwrite)NSString* IdentifyID;
+
 @end
 
 @implementation NavigationBaseViewController
 @synthesize nav = _nav;
+@synthesize IdentifyID = _IdentifyID;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.IdentifyID =[NSString stringWithFormat:@"%d", [self GetViewControllerUUID]];
         // Custom initialization
     }
     return self;
+}
+
+/**
+ Get UUID for everyViewController
+ */
+-(__uint32_t)GetViewControllerUUID
+{
+    return geteuid();
 }
 
 - (void)viewDidLoad

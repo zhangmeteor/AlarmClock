@@ -31,13 +31,13 @@
     [super viewDidLoad];
     //Set NavigaitonBar
     [self.nav.m_NavBar SetTitle:@"test"];
-    [self.nav.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
+//    [self.nav.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
     
     //Add Right NavigationBar ButtonItem
     UIButton* navRightBtnItem = [UIButton buttonWithType:UIButtonTypeContactAdd];
     navRightBtnItem.frame = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
-    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
     [navRightBtnItem addTarget:self action:@selector(navBtnItemClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
    
 	// Do any additional setup after loading the view, typically from a nib.
 }
