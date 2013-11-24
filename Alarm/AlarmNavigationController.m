@@ -89,6 +89,7 @@ NSString* const POP_ANIMATION = @"Pop_Animation";
     
     //Show View of CurrentViewController
     [self.view addSubview:viewController.view];
+    
     [self ShowCurrentView];
     
     //transmit Selector

@@ -24,19 +24,19 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.IdentifyID =[NSString stringWithFormat:@"%d", [self GetViewControllerUUID]];
+        self.IdentifyID =[NSString stringWithFormat:@"%d",[self hash]];
         // Custom initialization
     }
     return self;
 }
-
-/**
- Get UUID for everyViewController
- */
--(__uint32_t)GetViewControllerUUID
-{
-    return geteuid();
-}
+//
+///**
+// Get UUID for everyViewController
+// */
+//-(__uint32_t)GetViewControllerUUID
+//{
+//    return geteuid();
+//}
 
 - (void)viewDidLoad
 {
