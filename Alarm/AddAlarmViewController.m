@@ -8,6 +8,8 @@
 
 #import "AddAlarmViewController.h"
 
+#import "UIPositionDefine.h"
+
 @interface AddAlarmViewController ()
 
 @end
@@ -26,8 +28,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     [self.nav.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
+    
+    //Add Right NavigationBar ButtonItem
+    UIButton* navRightBtnItem = [UIButton buttonWithType:UIButtonTypeSystem];
+    [navRightBtnItem setTitle:@"Submit" forState:UIControlStateNormal];
+    navRightBtnItem.frame = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
+    [navRightBtnItem addTarget:self action:@selector(navBtnItemClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+/**
+    Submit Alarm Setting
+ */
+-(void)navBtnItemClicked
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -117,6 +117,7 @@ static NSString* const DefaultTitle = @"";
     UIButton* LeftButton;
     if (IS_IOS_7) {
         LeftButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [LeftButton setTitle:@"Back" forState:UIControlStateNormal];
     }
     else
     {
@@ -277,7 +278,7 @@ static NSString* const DefaultTitle = @"";
     
     //Add View to Navigationbar
     if ((m_CurrentLeftButton = LeftButtonItem[Identify])) {
-        [self addSubview:m_CurrentRightButton];
+        [self addSubview:m_CurrentLeftButton];
     }
     if ((m_CurrentRightButton = RightButtonItem[Identify])) {
         [self addSubview:m_CurrentRightButton];
@@ -301,6 +302,7 @@ static NSString* const DefaultTitle = @"";
             //Initilization Default View
             if (!(m_NextLeftButton = LeftButtonItem[Identify])) {
                 m_NextLeftButton = [self InitLeftButtonWithFrame:defaultFrame.LeftButtonFrame];
+                [m_NextLeftButton setTitle:m_CurrentLabel.text forState:UIControlStateNormal];
                 LeftButtonItem[Identify] = m_NextLeftButton;
             }
             m_NextRightbutton = RightButtonItem[Identify];

@@ -30,7 +30,8 @@
 {
     [super viewDidLoad];
     //Set NavigaitonBar
-    [self.nav.m_NavBar SetTitle:@"test"];
+    [self.nav.m_NavBar SetTitle:@"Alarm Clock"];
+    [self.nav.m_NavBar SetTitleColor:[UIColor blueColor]];
 //    [self.nav.m_NavBar SetLeftButtonTitle:@"Back" State:UIControlStateNormal];
     
     //Add Right NavigationBar ButtonItem
