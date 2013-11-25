@@ -8,15 +8,11 @@
 
 #import "AppDelegate.h"
 
-#import "AlarmSetViewController.h"
-
 #import "LeftSliderViewController.h"
 
-#import "AlarmNavigationController.h"
-
-#import "NavigationBarView.h"
-
 #import <PKRevealController/PKRevealController.h>
+
+#import "GlobalFunction.h"
 
 @interface AppDelegate () <PKRevealing>
 
@@ -32,22 +28,24 @@
 @synthesize NavBar = _NavBar;
 
 //侧边栏宽度
-static const double s_LeftSliderWidth = 150;
+static const double s_LeftSliderWidth = 170;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+   
+    //Set LeftSliderBar title
+     NSArray* const CurrentViewModelTitle = @[@"Alarm",@"Music",@"Background Color",@"Weather",@"Death Time",@"WakeUp Trend"];
+    [GlobalFunction SetGlobalViewTitle:CurrentViewModelTitle];
+    
     //添加侧边栏
     self.leftSliderViewController = [[LeftSliderViewController alloc]initWithNibName:@"LeftSliderViewController" bundle:nil];
     
-    //Set NavigaitonBar
-    self.alarmSetViewController = [[AlarmSetViewController alloc] initWithNibName:@"AlarmSetViewController" bundle:nil];
-    self.NavBar = [[NavigationBarView alloc]initNavigationBarWithLeftButton:CGRectZero UsingFrameType:NAVIGATION_BUTTON_FRAME_DEAFULT];
-    self.viewController = [[AlarmNavigationController alloc]initWithRootController:self.alarmSetViewController WithNavigationBar:self.NavBar];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
    
     //Set PKRevealController
-    self.pKRevealController = [PKRevealController revealControllerWithFrontViewController:self.viewController leftViewController:self.leftSliderViewController];
+    self.pKRevealController = [PKRevealController revealControllerWithFrontViewController:[storyboard instantiateInitialViewController] leftViewController:self.leftSliderViewController];
     
     //Configure
     [self.pKRevealController setMinimumWidth:s_LeftSliderWidth maximumWidth:s_LeftSliderWidth forViewController:self.leftSliderViewController];

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyr-Ud-ytE">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--Alarm View Controller - Title-->
+        <scene sceneID="FcK-bf-GcS">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E13-KK-dXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="SFj-tn-oDg" customClass="AlarmViewController" sceneMemberID="viewController">
+                    <tableView key="view" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="M5i-Io-ACx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9hl-ew-rit">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9hl-ew-rit" id="GjH-x1-hWp">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SFj-tn-oDg" id="Xy7-aU-5RH"/>
+                            <outlet property="delegate" destination="SFj-tn-oDg" id="1r0-Zh-GmT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="H56-OR-fHC">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="eiu-hY-UzV">
+                            <connections>
+                                <action selector="EditAlarm:" destination="SFj-tn-oDg" id="b0Z-vj-NGG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rnG-i0-gy2">
+                            <connections>
+                                <segue destination="GGu-ym-OQr" kind="modal" id="Fzf-bW-cxn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="509" y="-724"/>
+        </scene>
+        <!--Wake Up Trend View Controller - Wake Up Trend-->
+        <scene sceneID="h29-AS-Rrl">
+            <objects>
+                <viewController id="z4V-ul-7GQ" customClass="WakeUpTrendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YxB-OB-Gc4"/>
+                        <viewControllerLayoutGuide type="bottom" id="QmF-aC-3gn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p2i-JK-RCB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Wake Up Trend" id="EOI-LK-DB2">
+                        <barButtonItem key="backBarButtonItem" title="nil" id="QfO-2r-jLY"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ji-UG-2Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="-52"/>
+        </scene>
+        <!--Table View Controller - Set Alarm-->
+        <scene sceneID="fGc-RS-Kpx">
+            <objects>
+                <tableViewController id="9Y5-Gz-9ZK" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rK9-rY-S9A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Set Alarm" id="LX7-bb-xpt">
+                        <barButtonItem key="leftBarButtonItem" title="Cancle" id="L0W-Td-j5K">
+                            <connections>
+                                <segue destination="9Y5-Gz-9ZK" kind="custom" customClass="CustomRemoveModalView" id="QA8-35-bo1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="CQ8-LC-qzr"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NoX-Nl-uEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1395" y="-724"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oKj-FU-Ksq">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="GGu-ym-OQr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="efl-jb-9UU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9Y5-Gz-9ZK" kind="relationship" relationship="rootViewController" id="UwU-bd-e3i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nWO-tx-o2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912" y="-724"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pqp-zk-TrT">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="eyr-Ud-ytE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LxY-c5-eUA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BtF-8k-Fep">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="f9m-g5-0aK" kind="relationship" relationship="rootViewController" id="ASt-rd-Ylm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWI-rE-q6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-445" y="-430"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="KNy-43-90F">
+            <objects>
+                <viewController id="f9m-g5-0aK" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cq5-uC-Jjz"/>
+                        <viewControllerLayoutGuide type="bottom" id="5i3-Xq-jxE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fjb-2m-07h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hY6-FA-SV6"/>
+                    <connections>
+                        <segue destination="SFj-tn-oDg" kind="push" identifier="AlarmView" id="whr-En-NOd"/>
+                        <segue destination="z4V-ul-7GQ" kind="push" identifier="WakeUpTrendView" id="Bvw-hA-PXH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yh3-Aa-IZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9" y="-430"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="UwU-bd-e3i"/>
+    </inferredMetricsTieBreakers>
+</document>

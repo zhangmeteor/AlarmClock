@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MusicSetViewController : NavigationBaseViewController
+@interface MusicSetViewController : FunctionIndexViewController
 
 @end

@@ -29,12 +29,12 @@
 {
     [super viewDidLoad];
     
-    //Add Right NavigationBar ButtonItem
-    UIButton* navRightBtnItem = [UIButton buttonWithType:UIButtonTypeSystem];
-    [navRightBtnItem setTitle:@"Submit" forState:UIControlStateNormal];
-    navRightBtnItem.frame = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
-    [navRightBtnItem addTarget:self action:@selector(navBtnItemClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
+//    //Add Right NavigationBar ButtonItem
+//    UIButton* navRightBtnItem = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [navRightBtnItem setTitle:@"Submit" forState:UIControlStateNormal];
+//    navRightBtnItem.frame = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
+//    [navRightBtnItem addTarget:self action:@selector(navBtnItemClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
     
     // Do any additional setup after loading the view from its nib.
 }

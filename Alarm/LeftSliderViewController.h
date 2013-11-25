@@ -10,4 +10,6 @@
 
 @interface LeftSliderViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
+extern NSString* const ChangeCurrentViewNotification;
+
 @end

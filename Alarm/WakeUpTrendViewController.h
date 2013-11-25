@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WakeUpTrendViewController : NavigationBaseViewController
+@interface WakeUpTrendViewController : FunctionIndexViewController
 
 @end

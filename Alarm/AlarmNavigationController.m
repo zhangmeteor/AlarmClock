@@ -10,6 +10,8 @@
 
 #import "AlarmNavigationDelegate.h"
 
+#import "NavigationBaseViewController.h"
+
 #import "NavigationBarView.h"
 
 @interface AlarmNavigationController ()<NavigationBarDelegate>

@@ -6,6 +6,14 @@
          contextName = "-[AlarmNavigationController pushViewController:withAnimation:]:AlarmNavigationController.m">
       </ContextState>
       <ContextState
+         contextName = "-[AlarmViewController numberOfSectionsInTableView:]:AlarmViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.m_alarmNumber">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[NavigationBarView SetRightButtonItem:]:NavigationBarView.m">
          <PersistentStrings>
             <PersistentString

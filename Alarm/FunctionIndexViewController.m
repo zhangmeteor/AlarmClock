@@ -1,18 +1,18 @@
 //
-//  WakeUpTrendViewController.m
+//  FunctionIndexViewController.m
 //  Alarm
 //
-//  Created by zhanghao on 13-11-19.
+//  Created by zhanghao on 13-11-25.
 //  Copyright (c) 2013年 zhanghao. All rights reserved.
 //
 
-#import "WakeUpTrendViewController.h"
+#import "FunctionIndexViewController.h"
 
-@interface WakeUpTrendViewController ()
+@interface FunctionIndexViewController ()
 
 @end
 
-@implementation WakeUpTrendViewController
+@implementation FunctionIndexViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view from its nib.
+    [self.navigationItem setHidesBackButton:YES]; 
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

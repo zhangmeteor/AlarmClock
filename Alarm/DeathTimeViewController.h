@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DeathTimeViewController : NavigationBaseViewController
+@interface DeathTimeViewController : FunctionIndexViewController
 
 @end

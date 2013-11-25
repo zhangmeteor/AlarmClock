@@ -10,6 +10,8 @@
 
 #import "UIPositionDefine.h"
 
+#import "NavigationBaseViewController.h"
+
 #import "GlobalFunction.h"
 
 @interface NavigationBarView ()

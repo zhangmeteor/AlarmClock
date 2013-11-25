@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6105F231184342FA00588CDE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6105F230184342FA00588CDE /* MainViewController.m */; };
+		6105F234184344BC00588CDE /* CustomPresentModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6105F233184344BC00588CDE /* CustomPresentModal.m */; };
+		6105F2381843568900588CDE /* FunctionIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6105F2371843568900588CDE /* FunctionIndexViewController.m */; };
 		6106E071183DBADD00A1DC14 /* AddAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */; };
-		6106E072183DBADD00A1DC14 /* AddAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */; };
 		610929FE183B25CD0028B71F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610929FD183B25CD0028B71F /* UIKit.framework */; };
 		61092A00183B25CD0028B71F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610929FF183B25CD0028B71F /* Foundation.framework */; };
 		61092A02183B25CD0028B71F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61092A01183B25CD0028B71F /* CoreGraphics.framework */; };
@@ -18,8 +20,7 @@
 		61092A10183B25CE0028B71F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A0F183B25CE0028B71F /* Default.png */; };
 		61092A12183B25CE0028B71F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A11183B25CE0028B71F /* Default@2x.png */; };
 		61092A14183B25CE0028B71F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61092A13183B25CE0028B71F /* Default-568h@2x.png */; };
-		61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A16183B25CE0028B71F /* AlarmSetViewController.m */; };
-		61092A1A183B25CE0028B71F /* AlarmSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61092A18183B25CE0028B71F /* AlarmSetViewController.xib */; };
+		61092A17183B25CE0028B71F /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A16183B25CE0028B71F /* AlarmViewController.m */; };
 		61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61092A28183B31CF0028B71F /* GlobalFunction.m */; };
 		610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610D8A47183B4C4F0030A1FF /* LeftSliderViewController.m */; };
 		610D8A4A183B4C4F0030A1FF /* LeftSliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610D8A48183B4C4F0030A1FF /* LeftSliderViewController.xib */; };
@@ -28,23 +29,25 @@
 		6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6111E6CF183CB79800D77D96 /* AlarmNavigationController.xib */; };
 		618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618F71DD183B655D00842F9D /* NavigationBarView.m */; };
 		61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */; };
-		61BB2E82183B3A72005E71AB /* WakeUpTrendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */; };
 		61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */; };
-		61BB2E87183B3A98005E71AB /* DeathTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */; };
 		61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E89183B3AC3005E71AB /* WeatherViewController.m */; };
-		61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */; };
 		61BB2E90183B3AD2005E71AB /* MusicSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */; };
-		61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */; };
 		61BB2E95183B3AE2005E71AB /* BackgroundSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */; };
-		61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */; };
+		61FBD9751842F4C7008E8530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61FBD9741842F4C7008E8530 /* Main.storyboard */; };
+		61FBD9811843025F008E8530 /* CustomRemoveModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FBD9801843025F008E8530 /* CustomRemoveModalView.m */; };
 		F953A303A0AD45AEBC6036ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1673102BBE415B84501A0D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		48DF38B0DC59498888A58C86 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6105F22F184342FA00588CDE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6105F230184342FA00588CDE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6105F232184344BC00588CDE /* CustomPresentModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPresentModal.h; sourceTree = "<group>"; };
+		6105F233184344BC00588CDE /* CustomPresentModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPresentModal.m; sourceTree = "<group>"; };
+		6105F2361843568900588CDE /* FunctionIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionIndexViewController.h; sourceTree = "<group>"; };
+		6105F2371843568900588CDE /* FunctionIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionIndexViewController.m; sourceTree = "<group>"; };
 		6106E06E183DBADD00A1DC14 /* AddAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAlarmViewController.h; sourceTree = "<group>"; };
 		6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAlarmViewController.m; sourceTree = "<group>"; };
-		6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAlarmViewController.xib; sourceTree = "<group>"; };
 		610929FA183B25CD0028B71F /* Alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		610929FD183B25CD0028B71F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		610929FF183B25CD0028B71F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,9 +61,8 @@
 		61092A0F183B25CE0028B71F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		61092A11183B25CE0028B71F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		61092A13183B25CE0028B71F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		61092A15183B25CE0028B71F /* AlarmSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmSetViewController.h; sourceTree = "<group>"; };
-		61092A16183B25CE0028B71F /* AlarmSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmSetViewController.m; sourceTree = "<group>"; };
-		61092A19183B25CE0028B71F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AlarmSetViewController.xib; sourceTree = "<group>"; };
+		61092A15183B25CE0028B71F /* AlarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmViewController.h; sourceTree = "<group>"; };
+		61092A16183B25CE0028B71F /* AlarmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmViewController.m; sourceTree = "<group>"; };
 		61092A27183B31CF0028B71F /* GlobalFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalFunction.h; sourceTree = "<group>"; };
 		61092A28183B31CF0028B71F /* GlobalFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalFunction.m; sourceTree = "<group>"; };
 		610D8A46183B4C4F0030A1FF /* LeftSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSliderViewController.h; sourceTree = "<group>"; };
@@ -78,19 +80,17 @@
 		618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarDelegate.h; sourceTree = "<group>"; };
 		61BB2E7E183B3A72005E71AB /* WakeUpTrendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WakeUpTrendViewController.h; sourceTree = "<group>"; };
 		61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WakeUpTrendViewController.m; sourceTree = "<group>"; };
-		61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WakeUpTrendViewController.xib; sourceTree = "<group>"; };
 		61BB2E83183B3A98005E71AB /* DeathTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathTimeViewController.h; sourceTree = "<group>"; };
 		61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathTimeViewController.m; sourceTree = "<group>"; };
-		61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeathTimeViewController.xib; sourceTree = "<group>"; };
 		61BB2E88183B3AC3005E71AB /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
 		61BB2E89183B3AC3005E71AB /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
-		61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		61BB2E8D183B3AD2005E71AB /* MusicSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSetViewController.h; sourceTree = "<group>"; };
 		61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSetViewController.m; sourceTree = "<group>"; };
-		61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicSetViewController.xib; sourceTree = "<group>"; };
 		61BB2E92183B3AE2005E71AB /* BackgroundSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundSetViewController.h; sourceTree = "<group>"; };
 		61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundSetViewController.m; sourceTree = "<group>"; };
-		61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundSetViewController.xib; sourceTree = "<group>"; };
+		61FBD9741842F4C7008E8530 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
+		61FBD97F1843025F008E8530 /* CustomRemoveModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRemoveModalView.h; sourceTree = "<group>"; };
+		61FBD9801843025F008E8530 /* CustomRemoveModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRemoveModalView.m; sourceTree = "<group>"; };
 		8F1673102BBE415B84501A0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,12 +109,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6105F2351843563B00588CDE /* CustomModalMethod */ = {
+			isa = PBXGroup;
+			children = (
+				61FBD97F1843025F008E8530 /* CustomRemoveModalView.h */,
+				61FBD9801843025F008E8530 /* CustomRemoveModalView.m */,
+				6105F232184344BC00588CDE /* CustomPresentModal.h */,
+				6105F233184344BC00588CDE /* CustomPresentModal.m */,
+			);
+			name = CustomModalMethod;
+			sourceTree = "<group>";
+		};
 		610929F1183B25CD0028B71F = {
 			isa = PBXGroup;
 			children = (
 				61092A03183B25CD0028B71F /* Alarm */,
 				610929FC183B25CD0028B71F /* Frameworks */,
 				610929FB183B25CD0028B71F /* Products */,
+				6111E6C5183C8C7B00D77D96 /* NavigationController */,
 				48DF38B0DC59498888A58C86 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -141,8 +153,8 @@
 		61092A03183B25CD0028B71F /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				6105F2351843563B00588CDE /* CustomModalMethod */,
 				6111E6C1183C625300D77D96 /* UIPositionDefine.h */,
-				6111E6C5183C8C7B00D77D96 /* NavigationController */,
 				618F71D8183B651900842F9D /* View */,
 				610D8A45183B4C320030A1FF /* SliderController */,
 				61092A26183B31B50028B71F /* GlobleFunction */,
@@ -154,6 +166,9 @@
 				61092A25183B27870028B71F /* Alarm */,
 				61092A0C183B25CE0028B71F /* AppDelegate.h */,
 				61092A0D183B25CE0028B71F /* AppDelegate.m */,
+				61FBD9741842F4C7008E8530 /* Main.storyboard */,
+				6105F22F184342FA00588CDE /* MainViewController.h */,
+				6105F230184342FA00588CDE /* MainViewController.m */,
 				61092A04183B25CD0028B71F /* Supporting Files */,
 			);
 			path = Alarm;
@@ -178,7 +193,6 @@
 			children = (
 				61BB2E7E183B3A72005E71AB /* WakeUpTrendViewController.h */,
 				61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */,
-				61BB2E80183B3A72005E71AB /* WakeUpTrendViewController.xib */,
 			);
 			name = WakeUpTrend;
 			sourceTree = "<group>";
@@ -188,7 +202,6 @@
 			children = (
 				61BB2E83183B3A98005E71AB /* DeathTimeViewController.h */,
 				61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */,
-				61BB2E85183B3A98005E71AB /* DeathTimeViewController.xib */,
 			);
 			name = DeathTime;
 			sourceTree = "<group>";
@@ -198,7 +211,6 @@
 			children = (
 				61BB2E88183B3AC3005E71AB /* WeatherViewController.h */,
 				61BB2E89183B3AC3005E71AB /* WeatherViewController.m */,
-				61BB2E8A183B3AC3005E71AB /* WeatherViewController.xib */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -208,7 +220,6 @@
 			children = (
 				61BB2E8D183B3AD2005E71AB /* MusicSetViewController.h */,
 				61BB2E8E183B3AD2005E71AB /* MusicSetViewController.m */,
-				61BB2E8F183B3AD2005E71AB /* MusicSetViewController.xib */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -218,7 +229,6 @@
 			children = (
 				61BB2E92183B3AE2005E71AB /* BackgroundSetViewController.h */,
 				61BB2E93183B3AE2005E71AB /* BackgroundSetViewController.m */,
-				61BB2E94183B3AE2005E71AB /* BackgroundSetViewController.xib */,
 			);
 			name = Background;
 			sourceTree = "<group>";
@@ -226,12 +236,10 @@
 		61092A25183B27870028B71F /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
-				61092A15183B25CE0028B71F /* AlarmSetViewController.h */,
-				61092A16183B25CE0028B71F /* AlarmSetViewController.m */,
-				61092A18183B25CE0028B71F /* AlarmSetViewController.xib */,
+				61092A15183B25CE0028B71F /* AlarmViewController.h */,
+				61092A16183B25CE0028B71F /* AlarmViewController.m */,
 				6106E06E183DBADD00A1DC14 /* AddAlarmViewController.h */,
 				6106E06F183DBADD00A1DC14 /* AddAlarmViewController.m */,
-				6106E070183DBADD00A1DC14 /* AddAlarmViewController.xib */,
 			);
 			name = Alarm;
 			sourceTree = "<group>";
@@ -264,16 +272,19 @@
 				6111E6C9183C8D3C00D77D96 /* AlarmNavigationDelegate.h */,
 				6111E6C2183C7AA600D77D96 /* NavigationBaseViewController.h */,
 				6111E6C3183C7AA600D77D96 /* NavigationBaseViewController.m */,
+				618F71DC183B655D00842F9D /* NavigationBarView.h */,
+				618F71DD183B655D00842F9D /* NavigationBarView.m */,
+				618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */,
 			);
 			name = NavigationController;
+			path = Alarm;
 			sourceTree = "<group>";
 		};
 		618F71D8183B651900842F9D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				618F71DC183B655D00842F9D /* NavigationBarView.h */,
-				618F71DD183B655D00842F9D /* NavigationBarView.m */,
-				618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */,
+				6105F2361843568900588CDE /* FunctionIndexViewController.h */,
+				6105F2371843568900588CDE /* FunctionIndexViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -336,13 +347,7 @@
 				61092A10183B25CE0028B71F /* Default.png in Resources */,
 				61092A12183B25CE0028B71F /* Default@2x.png in Resources */,
 				61092A14183B25CE0028B71F /* Default-568h@2x.png in Resources */,
-				61092A1A183B25CE0028B71F /* AlarmSetViewController.xib in Resources */,
-				61BB2E82183B3A72005E71AB /* WakeUpTrendViewController.xib in Resources */,
-				61BB2E87183B3A98005E71AB /* DeathTimeViewController.xib in Resources */,
-				61BB2E8C183B3AC3005E71AB /* WeatherViewController.xib in Resources */,
-				61BB2E91183B3AD2005E71AB /* MusicSetViewController.xib in Resources */,
-				6106E072183DBADD00A1DC14 /* AddAlarmViewController.xib in Resources */,
-				61BB2E96183B3AE2005E71AB /* BackgroundSetViewController.xib in Resources */,
+				61FBD9751842F4C7008E8530 /* Main.storyboard in Resources */,
 				6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,16 +392,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61FBD9811843025F008E8530 /* CustomRemoveModalView.m in Sources */,
+				6105F2381843568900588CDE /* FunctionIndexViewController.m in Sources */,
 				61092A0A183B25CD0028B71F /* main.m in Sources */,
 				61092A0E183B25CE0028B71F /* AppDelegate.m in Sources */,
+				6105F231184342FA00588CDE /* MainViewController.m in Sources */,
 				6106E071183DBADD00A1DC14 /* AddAlarmViewController.m in Sources */,
 				6111E6C4183C7AA600D77D96 /* NavigationBaseViewController.m in Sources */,
-				61092A17183B25CE0028B71F /* AlarmSetViewController.m in Sources */,
+				61092A17183B25CE0028B71F /* AlarmViewController.m in Sources */,
 				61092A29183B31CF0028B71F /* GlobalFunction.m in Sources */,
 				6111E6C8183C8CB700D77D96 /* AlarmNavigationController.m in Sources */,
 				61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */,
 				61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */,
 				61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */,
+				6105F234184344BC00588CDE /* CustomPresentModal.m in Sources */,
 				61BB2E90183B3AD2005E71AB /* MusicSetViewController.m in Sources */,
 				610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */,
 				618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */,
@@ -413,14 +422,6 @@
 				61092A07183B25CD0028B71F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		61092A18183B25CE0028B71F /* AlarmSetViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61092A19183B25CE0028B71F /* en */,
-			);
-			name = AlarmSetViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -8,22 +8,10 @@
 
 #import "GlobalFunction.h"
 
-/**
-	type define
- */
-typedef enum _view_mode
-{
-	VIEW_MODE_ALARM,	/** 闹钟设置页面 */
-	VIEW_MODE_MUSIC,	/** 音乐设置页面 */
-	VIEW_MODE_BACKGROUND,	/** 设置背景图片页面 */
-	VIEW_MODE_WEATHER,	/** 天气设置页面 */
-	VIEW_MODE_DEATH_TIME,	/** 死亡事件设置页面 */
-	VIEW_MODE_WAKEUP_TREND,	/** 醒来趋势图表页面 */
-		/** 不同页面不同状态 */
-}VIEW_MODE;
-
 @implementation GlobalFunction
 static double s_CurrentViewModel = 0;
+
+static NSArray*  s_CurrentViewModelTitle;
 
 static double s_FunctionCount = 6;
 
@@ -39,6 +27,14 @@ static NSUInteger _deviceSystemMajorVersion = -1;
 +(double)GetGlobalViewState
 {
     return s_CurrentViewModel;
+}
++(void)SetGlobalViewTitle:(NSArray*)title
+{
+    s_CurrentViewModelTitle = title;
+}
++(NSArray*)GetGlobalViewTitle
+{
+    return s_CurrentViewModelTitle;
 }
 
 /**

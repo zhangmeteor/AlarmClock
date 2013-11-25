@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WeatherViewController : NavigationBaseViewController
+@interface WeatherViewController : FunctionIndexViewController
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BackgroundSetViewController : NavigationBaseViewController
+@interface BackgroundSetViewController : FunctionIndexViewController
 
 @end

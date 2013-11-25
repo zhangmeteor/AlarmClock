@@ -18,6 +18,8 @@
 
 static const double s_FunctionRowHeight = 50;
 
+NSString* const ChangeCurrentViewNotification = @"Change View Notificaiton";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,7 +38,7 @@ static const double s_FunctionRowHeight = 50;
 #pragma TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [GlobalFunction GetFunctionCount];
+    return [[GlobalFunction GetGlobalViewTitle]count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -54,14 +56,15 @@ static const double s_FunctionRowHeight = 50;
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = @"Function";
+    cell.textLabel.text = [[GlobalFunction GetGlobalViewTitle]objectAtIndex:indexPath.row];
+    [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
     return cell;
 }
 
 // Called after the user changes the selection.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ChangeCurrentViewNotification object:indexPath];
 }
 
 - (void)didReceiveMemoryWarning
