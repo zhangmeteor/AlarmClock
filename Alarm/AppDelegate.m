@@ -39,6 +39,9 @@ static const double s_LeftSliderWidth = 170;
      NSArray* const CurrentViewModelTitle = @[@"Alarm",@"Music",@"Background Color",@"Weather",@"Death Time",@"WakeUp Trend"];
     [GlobalFunction SetGlobalViewTitle:CurrentViewModelTitle];
     
+    //Add Notification
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(HideLeftSlider) name:ChangeCurrentViewNotification object:nil];
+    
     //添加侧边栏
     self.leftSliderViewController = [[LeftSliderViewController alloc]initWithNibName:@"LeftSliderViewController" bundle:nil];
     
@@ -55,6 +58,12 @@ static const double s_LeftSliderWidth = 170;
     self.window.rootViewController = self.pKRevealController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)HideLeftSlider
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self.pKRevealController showViewController:[storyboard instantiateInitialViewController]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
