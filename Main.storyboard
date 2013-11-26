@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyr-Ud-ytE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyr-Ud-ytE">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Alarm View Controller - Title-->
         <scene sceneID="FcK-bf-GcS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E13-KK-dXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="SFj-tn-oDg" customClass="AlarmViewController" sceneMemberID="viewController">
                     <tableView key="view" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="M5i-Io-ACx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -42,8 +41,9 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E13-KK-dXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="509" y="-724"/>
+            <point key="canvasLocation" x="561" y="-1496"/>
         </scene>
         <!--Wake Up Trend View Controller - Wake Up Trend-->
         <scene sceneID="h29-AS-Rrl">
@@ -64,7 +64,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ji-UG-2Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="509" y="-52"/>
+            <point key="canvasLocation" x="561" y="-644"/>
+        </scene>
+        <!--Death Time View Controller - DeathTIme-->
+        <scene sceneID="Htd-us-SLb">
+            <objects>
+                <viewController id="l0J-9u-D7D" customClass="DeathTimeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hrh-cD-T8K"/>
+                        <viewControllerLayoutGuide type="bottom" id="5J5-vH-2M8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2MJ-Q2-YlA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="DeathTIme" id="sq4-Hk-rtS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JWY-Rc-bMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="297"/>
+        </scene>
+        <!--Weather View Controller - Weather-->
+        <scene sceneID="ThW-IP-AQg">
+            <objects>
+                <viewController id="TiK-Po-0VF" customClass="WeatherViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tCz-nU-mj9"/>
+                        <viewControllerLayoutGuide type="bottom" id="RNm-Q2-zH6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8XI-Ue-5nz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weather" id="CIO-h6-6YX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTc-ZD-lXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="1224"/>
+        </scene>
+        <!--Music Set View Controller - Music-->
+        <scene sceneID="ua6-YS-9i2">
+            <objects>
+                <viewController id="VuR-Yl-Koo" customClass="MusicSetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pzA-lN-ISi"/>
+                        <viewControllerLayoutGuide type="bottom" id="hLI-Bn-1db"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q8m-Pk-YgW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Music" id="OmO-TH-PKV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kE9-oD-wev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="2141"/>
+        </scene>
+        <!--Background Set View Controller - Background-->
+        <scene sceneID="e95-bZ-W8k">
+            <objects>
+                <viewController id="ubv-aR-P3b" customClass="BackgroundSetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nJW-kT-N6s"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfi-av-hhd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VHl-z7-sa9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Background" id="mLe-W8-fRE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCC-tp-6fx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="3077"/>
         </scene>
         <!--Table View Controller - Set Alarm-->
         <scene sceneID="fGc-RS-Kpx">
@@ -86,7 +162,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NoX-Nl-uEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1395" y="-724"/>
+            <point key="canvasLocation" x="2095" y="-1496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oKj-FU-Ksq">
@@ -101,7 +177,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWO-tx-o2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="-724"/>
+            <point key="canvasLocation" x="1300" y="-1496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pqp-zk-TrT">
@@ -120,7 +196,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWI-rE-q6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-445" y="-430"/>
+            <point key="canvasLocation" x="-709" y="906"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="KNy-43-90F">
@@ -139,11 +215,15 @@
                     <connections>
                         <segue destination="SFj-tn-oDg" kind="push" identifier="AlarmView" id="whr-En-NOd"/>
                         <segue destination="z4V-ul-7GQ" kind="push" identifier="WakeUpTrendView" id="Bvw-hA-PXH"/>
+                        <segue destination="l0J-9u-D7D" kind="push" id="ciV-ji-Zib"/>
+                        <segue destination="TiK-Po-0VF" kind="push" id="rWF-iZ-h4W"/>
+                        <segue destination="VuR-Yl-Koo" kind="push" id="YNk-di-2ti"/>
+                        <segue destination="ubv-aR-P3b" kind="push" id="wx6-zC-5NY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yh3-Aa-IZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="-430"/>
+            <point key="canvasLocation" x="-111" y="921"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
