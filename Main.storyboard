@@ -191,8 +191,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <segue destination="G4K-ut-vjC" kind="custom" customClass="CustomRemoveModalView" id="F76-Ld-ejr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Pfa-fC-sv3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Pfa-fC-sv3">
+                            <connections>
+                                <action selector="SaveAlarm:" destination="G4K-ut-vjC" id="J6C-tn-VEK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="SaveAlarm" destination="Pfa-fC-sv3" id="o6P-PE-oSW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucX-6M-2jV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

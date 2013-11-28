@@ -28,24 +28,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    //Add Right NavigationBar ButtonItem
-//    UIButton* navRightBtnItem = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [navRightBtnItem setTitle:@"Submit" forState:UIControlStateNormal];
-//    navRightBtnItem.frame = NAVIGATION_UI_RIGHT_BUTTON_DEAFULT_FRAME;
-//    [navRightBtnItem addTarget:self action:@selector(navBtnItemClicked) forControlEvents:UIControlEventTouchUpInside];
-//    [self.nav.m_NavBar SetRightButtonItem:navRightBtnItem];
-    
     // Do any additional setup after loading the view from its nib.
 }
 
 /**
-    Submit Alarm Setting
+    Add Alarm
  */
--(void)navBtnItemClicked
-{
+- (IBAction)SaveAlarm:(id)sender {
+  //Alarm数据序列化
+    NSMutableDictionary* clockDictionary = [NSMutableDictionary dictionaryWithCapacity:6];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
