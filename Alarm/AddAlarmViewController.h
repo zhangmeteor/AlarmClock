@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddAlarmViewController : FunctionIndexViewController
-
+@interface AddAlarmViewController : UIViewController
 @end
