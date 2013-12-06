@@ -14,24 +14,16 @@
 {
     NSArray* AlarmSetItem;
 }
+@property(assign,nonatomic)int clockID;
 
 @end
 
 @implementation AddAlarmViewController
-//
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
+@synthesize clockID;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AlarmSetItem = @[@"Clock Remember",@"Clock Music",@"Music Shuffle",@"Clock Mode",@"Clock Repeat"];
+    AlarmSetItem                         = @[@"提醒内容",@"铃声",@"随机铃声",@"重复",@"稍后提醒"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -40,8 +32,9 @@
  */
 - (IBAction)SaveAlarm:(id)sender {
   //Alarm数据序列化
-    NSMutableDictionary* clockDictionary = [NSMutableDictionary dictionaryWithCapacity:6];
-    
+    NSMutableDictionary* clockDictionary = [NSMutableDictionary dictionaryWithCapacity:5];
+//    clockDictionary setObject:<#(id)#> forKey:<#(id<NSCopying>)#>
+
 }
 
 #pragma mark - Table view data source
@@ -55,15 +48,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* CellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString* CellIdentifier      = @"cell";
+    UITableViewCell* cell                = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell                                 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = AlarmSetItem[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.text                  = AlarmSetItem[indexPath.row];
+    cell.textLabel.font                  = [UIFont systemFontOfSize:15];
     [cell setBackgroundColor:[UIColor clearColor]];
+    
+    if (indexPath.row != 4) {
+        UILabel* showSettingText = [[UILabel alloc]initWithFrame:CGRectMake(200, 8, 90, 22)];
+        [cell addSubview:showSettingText];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UISwitch *switchButton = [[UISwitch alloc] initWithFrame:CGRectMake(260, 3, 10, 5)];
+        [switchButton setOn:NO];
+        [switchButton addTarget:self action:@selector(RemindLater:) forControlEvents:UIControlEventValueChanged];
+        [cell addSubview:switchButton];
+    }
     return cell;
+}
+
+/**
+	稍后提醒开启关闭
+ */
+-(void)RemindLater:(id)sender
+{
+    UISwitch* Remindswitch = (UISwitch*)sender;
+    BOOL  isButtonOn = [Remindswitch isOn];
+    if (isButtonOn) {
+        
+    }
+    else
+    {
+        
+    }
 }
 
 

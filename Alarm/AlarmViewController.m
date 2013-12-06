@@ -23,11 +23,11 @@
 @end
 
 @implementation AlarmViewController
-@synthesize m_alarmNumber = _m_alarmNumber;
+@synthesize m_alarmNumber       = _m_alarmNumber;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+self                            = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -37,10 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -62,9 +62,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section   // custom view for header. will be adjusted to default or specified header height
 {
-    UILabel* headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, tableView.rowHeight)];
-    headerLabel.text = @"test";
-    headerLabel.textAlignment = NSTextAlignmentCenter;
+UILabel* headerLabel            = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, tableView.rowHeight)];
+headerLabel.text                = @"test";
+headerLabel.textAlignment       = NSTextAlignmentCenter;
     return headerLabel;
 }
 
@@ -77,10 +77,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString* CellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+static NSString* CellIdentifier = @"cell";
+UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [cell setBackgroundColor:[UIColor clearColor]];
     return cell;
@@ -91,7 +91,7 @@
  */
 - (IBAction)EditAlarm:(id)sender
 {
-    
+
 }
 
 /*
@@ -135,13 +135,13 @@
 
 /*
  #pragma mark - Navigation
- 
+
  // In a story board-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- 
+
  */
 @end
