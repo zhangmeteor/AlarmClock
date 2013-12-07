@@ -9,13 +9,22 @@
 #import "AddAlarmViewController.h"
 
 #import "UIPositionDefine.h"
+/**
+	设置每行label名称
+ */
+typedef enum _alarm_set_item
+{
+	ALARM__REMEMBER = 0,	/** 提醒内容 */
+	ALARM_SOUND,	/** 铃声 */
+	ALARM_SHUFFLE,	/** 随机铃声 */
+	ALARM_REPEAT,	/** 重复 */
+	ALARM_REMINDER_LATER,	/** 稍后提醒 */
+}ALARM_SET_ITEM;
 
 @interface AddAlarmViewController ()
 {
     NSArray* AlarmSetItem;
 }
-@property(assign,nonatomic)int clockID;
-
 @end
 
 @implementation AddAlarmViewController
@@ -33,6 +42,33 @@
 - (IBAction)SaveAlarm:(id)sender {
   //Alarm数据序列化
     NSMutableDictionary* clockDictionary = [NSMutableDictionary dictionaryWithCapacity:5];
+    [self.view.subviews enumerateObjectsUsingBlock:^(UILabel* label , NSUInteger idx , BOOL* stop)
+    {
+        switch (label.tag) {
+            case ALARM__REMEMBER:
+                [clockDictionary setObject:label.text forKey:@"ClockRemember"];
+                break;
+            case ALARM_SOUND:
+                 [clockDictionary setObject:label.text forKey:@"ClockMusic"];
+                break;
+            case ALARM_SHUFFLE:
+                 [clockDictionary setObject:label.text forKey:@"ClockShuffle"];
+                break;
+            case ALARM_REPEAT:
+                 [clockDictionary setObject:label.text forKey:@"ClockRepeat"];
+                break;
+            case ALARM_REMINDER_LATER:
+                 [clockDictionary setObject:label.text forKey:@"ClockReminderLater"];
+                break;
+            default:
+                break;
+        }
+    }];
+    
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:clockDictionary forKey:[NSString stringWithFormat:@"%d",clockID]];
+    
+    
 //    clockDictionary setObject:<#(id)#> forKey:<#(id<NSCopying>)#>
 
 }
@@ -60,6 +96,7 @@
     if (indexPath.row != 4) {
         UILabel* showSettingText = [[UILabel alloc]initWithFrame:CGRectMake(200, 8, 90, 22)];
         [cell addSubview:showSettingText];
+        cell.tag = indexPath.row;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else

@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddAlarmViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property(assign,nonatomic)int clockID;
 @end
