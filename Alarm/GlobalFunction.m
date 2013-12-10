@@ -17,6 +17,8 @@ static double s_FunctionCount = 6;
 
 static NSUInteger _deviceSystemMajorVersion = -1;
 
+static NSUInteger s_ClockNumber = 0;
+
 /**
 	设置View的状态
  */
@@ -55,5 +57,18 @@ static NSUInteger _deviceSystemMajorVersion = -1;
         _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
 	});
 	return _deviceSystemMajorVersion;
+}
+
+/**
+	设置当前闹钟总数目
+ */
++(int)GetClockNumber
+{
+    return s_ClockNumber;
+}
+
++(void)AddClockNumber
+{
+    s_ClockNumber++;
 }
 @end

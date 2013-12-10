@@ -36,4 +36,8 @@ typedef enum _view_mode
 
 +(NSArray*)GetGlobalViewTitle;
 
++(int)GetClockNumber;
+
++(void)AddClockNumber;
+
 @end

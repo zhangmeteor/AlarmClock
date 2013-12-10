@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AddAlarmViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *SetAlarmTableView;
 @property(assign,nonatomic)int clockID;
 @end

@@ -7,9 +7,13 @@
 //
 
 #import "CustomPresentModal.h"
+#import "GlobalFunction.h"
 
 @implementation CustomPresentModal
 - (void)perform
 {
+    UIViewController* current = self.sourceViewController;
+    UIViewController* destination = self.destinationViewController;
+    [current presentViewController:destination animated:YES completion:nil];
 }
 @end
