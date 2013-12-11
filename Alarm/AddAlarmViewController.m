@@ -135,10 +135,12 @@ typedef enum _alarm_set_item
         [((AlarmRememberViewController*)destination).AlarmRememberText setText:AlarmDefaultState[indexPath.row]];
     }
     if (indexPath.row == ALARM_SOUND) {
-        
+        //初始化
+        destination = [[[NSBundle mainBundle] loadNibNamed:@"AlarmSoundViewController" owner:self options:nil]objectAtIndex:0];
     }
     if (indexPath.row == ALARM_REPEAT) {
-        
+        //初始化
+        destination = [[[NSBundle mainBundle] loadNibNamed:@"AlarmRepeatViewController" owner:self options:nil]objectAtIndex:0];
     }
     //push
     [self.navigationController pushViewController:(UIViewController*)destination animated:YES];

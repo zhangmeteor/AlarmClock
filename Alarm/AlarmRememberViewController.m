@@ -30,7 +30,16 @@
     [self.navigationItem setTitle:@"提醒内容"];
     //自动进入编辑状态
     [_AlarmRememberText becomeFirstResponder];
+    [_AlarmRememberText addTarget:self action:@selector(ReturnKeyPressd:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	// Do any additional setup after loading the view.
+}
+
+/**
+	return键盘按钮事件
+ */
+-(void)ReturnKeyPressd:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

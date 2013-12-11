@@ -1,18 +1,18 @@
 //
-//  FunctionIndexViewController.m
+//  AlarmSoundViewController.m
 //  Alarm
 //
-//  Created by zhanghao on 13-11-25.
+//  Created by zhanghao on 13-12-11.
 //  Copyright (c) 2013年 zhanghao. All rights reserved.
 //
 
-#import "FunctionIndexViewController.h"
+#import "AlarmSoundViewController.h"
 
-@interface FunctionIndexViewController ()
+@interface AlarmSoundViewController ()
 
 @end
 
-@implementation FunctionIndexViewController
+@implementation AlarmSoundViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationItem setHidesBackButton:YES]; 
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
