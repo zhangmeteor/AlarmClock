@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad
 {
+    
     //获取铃声列表
     NSString* path = [[NSBundle mainBundle]pathForResource:@"sound" ofType:@"plist"];
     NSDictionary* MusicDic = [[NSDictionary alloc]initWithContentsOfFile:path];
