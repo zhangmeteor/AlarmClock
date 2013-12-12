@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AlarmRepeatDelegate.h"
 @interface AlarmRepeatViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *AlarmRepeatTableView;
-
+@property(weak, nonatomic)id<AlarmRepeatDelegate> delegate;
+@property (assign, nonatomic)char   SelectedDays;
 @end

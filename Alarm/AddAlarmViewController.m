@@ -20,6 +20,10 @@
 
 #import "AlarmRememberDelegate.h"
 
+#import "AlarmRepeatDelegate.h"
+
+#import "AlarmRepeatViewController.h"
+
 /**
 	设置每行label名称
  */
@@ -32,10 +36,11 @@ typedef enum _alarm_set_item
 	ALARM_REMINDER_LATER,	/** 稍后提醒 */
 }ALARM_SET_ITEM;
 
-@interface AddAlarmViewController ()<AlarmRememberDelegate>
+@interface AddAlarmViewController ()<AlarmRememberDelegate,AlarmRepeatDelegate>
 {
     NSArray* AlarmSetItem;
     NSMutableArray* AlarmDefaultState;
+    char        AlarmType;
     BOOL     IsReminderLater;
     BOOL     IsShuffle;
 }
@@ -49,6 +54,8 @@ typedef enum _alarm_set_item
     self.clockID                                = [GlobalFunction GetClockNumber] + 1;
     AlarmSetItem                                = @[@"提醒内容",@"铃声",@"重复",@"随机铃声",@"稍后提醒"];
     AlarmDefaultState                           = [@[@"闹钟",@"雷达",@"永不",@"",@""]mutableCopy];
+    //默认为不重复
+    AlarmType = 0x000;
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -141,6 +148,10 @@ typedef enum _alarm_set_item
     if (indexPath.row == ALARM_REPEAT) {
         //初始化
         destination = [[[NSBundle mainBundle] loadNibNamed:@"AlarmRepeatViewController" owner:self options:nil]objectAtIndex:0];
+        //设置代理
+        ((AlarmRepeatViewController*)destination).delegate = self;
+        //设置重复状态
+        ((AlarmRepeatViewController*)destination).SelectedDays = AlarmType;
     }
     //push
     [self.navigationController pushViewController:(UIViewController*)destination animated:YES];
@@ -169,7 +180,16 @@ typedef enum _alarm_set_item
 -(void)SetAlarmRemeberText:(NSString*)text
 {
     //修改闹钟提醒内容
-    [AlarmDefaultState setObject:text atIndexedSubscript:0];
+    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM__REMEMBER];
+    [_SetAlarmTableView reloadData];
+}
+
+#pragma AlarmRepeatDelegate
+-(void)AlarmRepeatType:(char)type Text:(NSString*)text
+{
+    //修改重复内容
+    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM_REPEAT];
+    AlarmType = type;
     [_SetAlarmTableView reloadData];
 }
 

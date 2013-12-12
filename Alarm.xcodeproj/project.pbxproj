@@ -60,6 +60,7 @@
 		1FB4457B18554DC80070FD6D /* AlarmRememberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmRememberViewController.m; sourceTree = "<group>"; };
 		1FB4457D185553D40070FD6D /* AlarmRememberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmRememberViewController.xib; sourceTree = "<group>"; };
 		48DF38B0DC59498888A58C86 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6102D5F218594E6C0082B7B0 /* AlarmRepeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRepeatDelegate.h; sourceTree = "<group>"; };
 		6105F22F184342FA00588CDE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6105F230184342FA00588CDE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6105F232184344BC00588CDE /* CustomPresentModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPresentModal.h; sourceTree = "<group>"; };
@@ -357,6 +358,7 @@
 				6119987E185805A600C16652 /* AlarmRepeatViewController.h */,
 				6119987F185805A600C16652 /* AlarmRepeatViewController.m */,
 				61199880185805A600C16652 /* AlarmRepeatViewController.xib */,
+				6102D5F218594E6C0082B7B0 /* AlarmRepeatDelegate.h */,
 			);
 			name = AlarmRepeat;
 			sourceTree = "<group>";

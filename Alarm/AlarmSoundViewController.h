@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlarmSoundViewController : UIViewController
+@interface AlarmSoundViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
