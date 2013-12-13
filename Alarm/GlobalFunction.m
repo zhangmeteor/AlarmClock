@@ -71,4 +71,33 @@ static NSUInteger s_ClockNumber = 0;
 {
     s_ClockNumber++;
 }
+
+/**
+ 改变时间为显示需要的格式
+ */
++(NSArray*)ChangeDataTimeToString:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"HH:mm"];
+    NSString* time = [dateFormatter stringFromDate:date];
+    
+    [dateFormatter setDateFormat:@"HH"];
+    NSString* hour = [dateFormatter stringFromDate:date];
+    
+    [dateFormatter setDateFormat:@"HH"];
+    NSString* minute = [dateFormatter stringFromDate:date];
+    
+    NSString* AmOrPm;
+    if ([hour intValue] > 12) {
+       AmOrPm = @"下午";
+        hour = [NSString stringWithFormat:@"%d",[hour intValue] - 12];
+        time = [NSString stringWithFormat:@"%@:%@",hour,minute];
+    }
+    else
+    {
+        AmOrPm = @"上午";
+    }
+    
+    return [NSArray arrayWithObjects:time,AmOrPm,nil];
+}
 @end

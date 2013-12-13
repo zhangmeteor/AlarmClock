@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AlarmSoundDelegate.h"
 @interface AlarmSoundViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
+@property(assign, nonatomic)id currentSound;
+@property(assign, nonatomic)id<AlarmSoundDelegate> delegate;
 @end

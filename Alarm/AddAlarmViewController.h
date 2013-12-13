@@ -10,5 +10,6 @@
 
 @interface AddAlarmViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *SetAlarmTableView;
+@property (weak, nonatomic) IBOutlet UIDatePicker *AlarmTimePicker;
 @property(assign,nonatomic)int clockID;
 @end

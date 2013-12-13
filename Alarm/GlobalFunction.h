@@ -40,4 +40,6 @@ typedef enum _view_mode
 
 +(void)AddClockNumber;
 
++(NSArray*)ChangeDataTimeToString:(NSDate*)date;
+
 @end

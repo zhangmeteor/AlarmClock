@@ -16,10 +16,15 @@
 
 #import "AddAlarmViewController.h"
 
+#import "AlarmCell.h"
+
 @interface AlarmViewController ()
+{
+    NSUserDefaults* userDefault;
+}
 
 @property (nonatomic, assign) int m_alarmNumber;
-
+@property (strong, nonatomic) IBOutlet UITableView *AlarmTableView;
 @end
 
 @implementation AlarmViewController
@@ -27,7 +32,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-self                            = [super initWithStyle:style];
+    self                            = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -37,12 +42,20 @@ self                            = [super initWithStyle:style];
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    userDefault                            = [NSUserDefaults standardUserDefaults];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+/**
+	刷新页面
+ */
+-(void)viewWillAppear:(BOOL)animated
+{
+    [_AlarmTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,34 +68,43 @@ self                            = [super initWithStyle:style];
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section   // custom view for header. will be adjusted to default or specified header height
-{
-UILabel* headerLabel            = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, tableView.rowHeight)];
-headerLabel.text                = @"test";
-headerLabel.textAlignment       = NSTextAlignmentCenter;
-    return headerLabel;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section   // custom view for header. will be adjusted to default or specified header height
+//{
+//    UILabel* headerLabel            = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, tableView.rowHeight)];
+//    headerLabel.text                = @"test";
+//    headerLabel.textAlignment       = NSTextAlignmentCenter;
+//    return headerLabel;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-     return [GlobalFunction GetFunctionCount];
+    return [GlobalFunction GetClockNumber];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-static NSString* CellIdentifier = @"cell";
-UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString* CellIdentifier = @"cell";
+    UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell setBackgroundColor:[UIColor clearColor]];
+    cell = [[[NSBundle mainBundle]loadNibNamed:@"AlarmCell" owner:self options:nil]objectAtIndex:0];
+    NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+    //设置提示内容和重复日期
+    NSString* Remember = [clockDictionary objectForKey:@"ClockRemember"];
+    NSString* Repeat = [clockDictionary objectForKey:@"ClockRepeat"];
+    ((AlarmCell*)cell).AlarmRememberAndRepeat.text = [NSString stringWithFormat:@"%@,  %@",Remember,Repeat];
+    //设置时间
+    NSArray* time = [clockDictionary objectForKey:@"ClockTime"];
+    ((AlarmCell*)cell).AlarmAmOrPm.text = [time objectAtIndex:1];
+    ((AlarmCell*)cell).AlarmTime.text = [time objectAtIndex:0];
     return cell;
 }
 
@@ -91,7 +113,7 @@ cell                            = [[UITableViewCell alloc]initWithStyle:UITableV
  */
 - (IBAction)EditAlarm:(id)sender
 {
-
+    
 }
 
 /*
