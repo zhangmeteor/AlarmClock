@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="6Cl-QB-j6a" customClass="AlarmRepeatViewController">
+        <viewController id="6Cl-QB-j6a" customClass="AlarmRepeatIntervalViewController">
             <layoutGuides>
                 <viewControllerLayoutGuide type="top" id="NVs-kn-c0b"/>
                 <viewControllerLayoutGuide type="bottom" id="jb6-Pj-KN3"/>

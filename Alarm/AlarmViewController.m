@@ -103,14 +103,20 @@
     NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
     //设置提示内容和重复日期
     NSString* Remember = [clockDictionary objectForKey:@"ClockRemember"];
-    NSString* Repeat = [clockDictionary objectForKey:@"ClockRepeat"];
-    ((AlarmCell*)cell).AlarmRememberAndRepeat.text = [NSString stringWithFormat:@"%@,  %@",Remember,Repeat];
+    NSString* RepeatInterval = [clockDictionary objectForKey:@"ClockRepeatInterval"];
+    NSString* RepeatIntervalString = [clockDictionary objectForKey:@"ClockRepeatIntervalChar"];
+    int RepeatIntervalInt = [RepeatIntervalString intValue];
+    char RepeatIntervalChar  = RepeatIntervalInt & 0xfff;
+    ((AlarmCell*)cell).AlarmRememberAndRepeatInterval.text = [NSString stringWithFormat:@"%@,  %@",Remember,RepeatInterval];
     //设置时间
-    NSArray* time = [clockDictionary objectForKey:@"ClockTime"];
-    ((AlarmCell*)cell).AlarmAmOrPm.text = [time objectAtIndex:1];
-    ((AlarmCell*)cell).AlarmTime.text = [time objectAtIndex:0];
+    NSDate* timeDate = [clockDictionary objectForKey:@"ClockTime"];
+    NSArray* timeArray =  [GlobalFunction ChangeDataTimeToString:timeDate];
+    ((AlarmCell*)cell).AlarmAmOrPm.text = [timeArray objectAtIndex:1];
+    ((AlarmCell*)cell).AlarmTime.text = [timeArray objectAtIndex:0];
+    //设置铃声
+    NSString* Sound =  [clockDictionary objectForKey:@"ClockMusic"];
     //设置本地推送
-    [self SetClockAlert:clockDictionary];
+    [self SetClockAlert:timeDate Text:Remember Sound:Sound RepeatInterval:RepeatIntervalChar UserID:indexPath.row];
     
     return cell;
 }
@@ -149,85 +155,104 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle==UITableViewCellEditingStyleDelete) {
-        //        获取选中删除行索引值
-        NSInteger row = [indexPath row];
-        //        通过获取的索引值删除数组中的值
-        [userDefault removeObjectForKey:[NSString stringWithFormat:@"%d",row]];
+          //        获取选中删除行索引值
+        AlarmCell* cell = (AlarmCell*)[tableView cellForRowAtIndexPath:indexPath];
+        int index = indexPath.row;
+        
+        [userDefault removeObjectForKey:[NSString stringWithFormat:@"%d",index]];
+        for (int i = index + 1; i <= [GlobalFunction GetClockNumber]; i++) {
+            NSString* preClockID = [NSString stringWithFormat:@"%d",i-1];
+            NSString* clockID = [NSString stringWithFormat:@"%d",i];
+            NSMutableDictionary* clockDic = [[userDefault objectForKey:clockID]copy];
+            //        通过获取的索引值删除数组中的值
+            [userDefault removeObjectForKey:clockID];
+            [userDefault setObject:clockDic forKey:preClockID];
+        }
         [GlobalFunction DeleteClockNumber];
-//        //        删除单元格的某一行时，在用动画效果实现删除过程
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        //开启时，先取消通知
+        if (cell.AlarmSwitch.isOn) {
+            [self CancleClockAlert:index];
+        }
+        [userDefault synchronize];
+        
+        //    删除单元格的某一行时，在用动画效果实现删除过程
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
         
         //回到完成状态
-        [_AlarmTableView setEditing:NO animated:YES];
+        [_AlarmTableView setEditing:NO animated:NO];
         self.navigationItem.leftBarButtonItem.title = @"编辑";
+        
+//        [_AlarmTableView reloadData];
     }
 }
 
 /**
 	设置本地推送
  */
--(void)SetClockAlert:(NSDictionary*)clockDictionary
+-(void)SetClockAlert:(NSDate*)date Text:(NSString*)text Sound:(NSString*)sound RepeatInterval:(char)interval UserID:(int)id
 {
-    UILocalNotification* noti = [[UILocalNotification alloc]init];
-    if (noti) {
-        //设置推送时间
-        noti.fireDate =
-        //设置时区
-        noti.timeZone = [NSTimeZone defaultTimeZone];
-        //设置重复间隔
-        noti.repeatInterval = NSWeekCalendarUnit;
-        //推送声音
-        noti.soundName = UILocalNotificationDefaultSoundName;
-        //内容
-        noti.alertBody = @"推送内容";
-        //显示在icon上的红色圈中的数子
-        noti.applicationIconBadgeNumber = 1;
-        //设置userinfo 方便在之后需要撤销的时候使用
-        NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"name" forKey:@"key"];
-        noti.userInfo = infoDic;
-        //添加推送到uiapplication
-        UIApplication* app = [UIApplication sharedApplication];
-        [app scheduleLocalNotification:noti];
+    for (int i = SUNDAY ; i < WEEKDAY_COUNT; i++) {
+        if ((interval>>i)&0x001) {
+            NSDate* AlertDate= [date dateByAddingTimeInterval:3600*24*i];
+            //先关闭可能存在的本地通知
+            [self CancleClockAlert:id];
+            //添加本地通知
+            [self AddLocalNotificationWithDate:AlertDate Text:text Sound:sound UserID:id];
+        }
     }
-    
+    //大周设置
+    if ((interval>>BIG_WEEKDAY)&0x001) {
+       
+    }
+    //小周设置
+    if ((interval>>SMALL_WEEKDAY)&0x001) {
+        
+    }
 }
 
--(void)CancleClockAlert:(NSDictionary*)clockDictionary
+-(void)AddLocalNotificationWithDate:(NSDate*)date Text:(NSString*)text Sound:(NSString*)sound UserID:(int)id
+{
+    @autoreleasepool {
+        UILocalNotification* noti = [[UILocalNotification alloc]init];
+        if (noti) {
+            //设置推送时间
+            noti.fireDate = date;
+            //设置时区
+            noti.timeZone = [NSTimeZone defaultTimeZone];
+            //设置重复间隔
+            noti.repeatInterval = NSWeekCalendarUnit;
+            //推送声音
+            noti.soundName = [NSString stringWithFormat:@"%@.m4a",sound];
+            //内容
+            noti.alertBody = text;
+            //显示在icon上的红色圈中的数子
+            noti.applicationIconBadgeNumber = 1;
+            //设置userinfo 方便在之后需要撤销的时候使用
+            NSDictionary *infoDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",id] forKey:@"ActivityClock"];
+            noti.userInfo = infoDic;
+            //添加推送到uiapplication
+            UIApplication* app = [UIApplication sharedApplication];
+            [app scheduleLocalNotification:noti];
+        }
+    }
+}
+
+
+-(void)CancleClockAlert:(int)clockID
 {
     UIApplication *app = [UIApplication sharedApplication];
     //获取本地推送数组
     NSArray *localArr = [app scheduledLocalNotifications];
-    
     //声明本地通知对象
-    UILocalNotification *localNoti;
     
     if (localArr) {
-        for (UILocalNotification *noti in localArr) {
-            NSDictionary *dict = noti.userInfo;
-            if (dict) {
-                NSString *inKey = [dict objectForKey:@"key"];
-                if ([inKey isEqualToString:key]) {
-                    if (localNoti){
-                        [localNoti release];
-                        localNoti = nil;
-                    }
-                    localNoti = [noti retain];
-                    break;
-                }
+       [localArr enumerateObjectsUsingBlock:^(UILocalNotification* noti, NSUInteger idx, BOOL* stop)
+        {
+            if ([[[noti userInfo]objectForKey:@"ActiveAlarm"]intValue] == clockID) {
+                [app cancelLocalNotification:noti];
             }
-        }
-        
-        //判断是否找到已经存在的相同key的推送
-        if (!localNoti) {
-            //不存在 初始化
-            localNoti = [[UILocalNotification alloc] init];
-        }
-        
-        if (localNoti && !state) {
-            //不推送 取消推送
-            [app cancelLocalNotification:localNoti];
-            return;
-        }
+        }];
     }
 }
 

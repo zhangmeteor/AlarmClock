@@ -11,6 +11,6 @@
 @interface AlarmCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *AlarmTime;
 @property (weak, nonatomic) IBOutlet UILabel *AlarmAmOrPm;
-@property (weak, nonatomic) IBOutlet UILabel *AlarmRememberAndRepeat;
+@property (weak, nonatomic) IBOutlet UILabel *AlarmRememberAndRepeatInterval;
 @property (weak, nonatomic) IBOutlet UISwitch *AlarmSwitch;
 @end

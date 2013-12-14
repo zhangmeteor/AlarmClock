@@ -6,32 +6,22 @@
 //  Copyright (c) 2013年 zhanghao. All rights reserved.
 //
 
-#import "AlarmRepeatViewController.h"
-typedef enum _weekday
-{
-    SUNDAY = 0,
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURSDAY,
-    FRIDAY,
-    SATURDAY,
-    SMALL_WEEKDAY,
-    BIG_WEEKDAY,
-}WEEKDAY;
+#import "AlarmRepeatIntervalViewController.h"
 
-@interface AlarmRepeatViewController ()
+#import "GlobalFunction.h"
+
+@interface AlarmRepeatIntervalViewController ()
 {
-    NSArray* RepeatTime;
+    NSArray* RepeatIntervalTime;
 }
 @property (assign, nonatomic)BOOL IsWeekdayChoose;
 @property (retain, nonatomic)NSIndexPath* Saturday;
 @property (retain, nonatomic)NSIndexPath* Sunday;
-@property (retain, nonatomic)NSString* RepeatType;
+@property (retain, nonatomic)NSString* RepeatIntervalType;
 
 @end
 
-@implementation AlarmRepeatViewController
+@implementation AlarmRepeatIntervalViewController
 @synthesize SelectedDays;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,15 +37,15 @@ typedef enum _weekday
 {
     [super viewDidLoad];
     SelectedDays = 0x000;
-    RepeatTime                      = @[@"每周日",@"每周一",@"每周二",@"每周三",@"每周四",@"每周五",@"每周六",@"大周",@"小周"];
-    _RepeatType = @"每周";
+    RepeatIntervalTime                      = @[@"每周日",@"每周一",@"每周二",@"每周三",@"每周四",@"每周五",@"每周六",@"大周",@"小周"];
+    _RepeatIntervalType = @"每周";
     // Do any additional setup after loading the view from its nib.
 }
 
 #pragma UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [RepeatTime count];
+    return [RepeatIntervalTime count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,7 +54,7 @@ typedef enum _weekday
    UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
    cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }   cell.textLabel.text             = RepeatTime[indexPath.row];
+    }   cell.textLabel.text             = RepeatIntervalTime[indexPath.row];
      if ((SelectedDays >> indexPath.row) & 0x001)
      {
          cell.accessoryType              = UITableViewCellAccessoryCheckmark;
@@ -111,26 +101,26 @@ typedef enum _weekday
 -(void)viewWillDisappear:(BOOL)animated
 {
     //获取所有选择框的状态
-    for (NSInteger row = 0; row < [RepeatTime count]; row++) {
+    for (NSInteger row = 0; row < [RepeatIntervalTime count]; row++) {
         NSIndexPath* indexpath = [NSIndexPath indexPathForRow:row inSection:0];
         UITableViewCell* cell = [_AlarmRepeatTableView cellForRowAtIndexPath:indexpath];
         
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             switch (row) {
                 case MONDAY:
-                    _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[MONDAY]]];
+                    _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[MONDAY]]];
                     break;
                 case TUESDAY:
-                    _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[TUESDAY]]];
+                    _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[TUESDAY]]];
                     break;
                 case WEDNESDAY:
-                    _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[WEDNESDAY]]];
+                    _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[WEDNESDAY]]];
                     break;
                 case THURSDAY:
-                    _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[THURSDAY]]];
+                    _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[THURSDAY]]];
                     break;
                 case FRIDAY:
-                    _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[FRIDAY]]];
+                    _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[FRIDAY]]];
                     break;
             }
             SelectedDays  = (((SelectedDays>>row) | 0x001)<<row) | SelectedDays;
@@ -139,39 +129,39 @@ typedef enum _weekday
     
     //全部选中的情况
     if (SelectedDays  == 0x07f) {
-       _RepeatType = @"每天";
+       _RepeatIntervalType = @"每天";
         //回调函数，返回当前重复的类型
-        [_delegate AlarmRepeatType:SelectedDays Text:_RepeatType];
+        [_delegate AlarmRepeatIntervalType:SelectedDays Text:_RepeatIntervalType];
         return;
     }
     //全部不选中的情况
     if (SelectedDays  == 0x000) {
-        _RepeatType = @"永不";
+        _RepeatIntervalType = @"永不";
         //回调函数，返回当前重复的类型
-        [_delegate AlarmRepeatType:SelectedDays Text:_RepeatType];
+        [_delegate AlarmRepeatIntervalType:SelectedDays Text:_RepeatIntervalType];
         return;
     }
    //选中大小周和没选中大小周的处理
     if (_IsWeekdayChoose) {
         if (SelectedDays >> BIG_WEEKDAY & 0x001) {
-            _RepeatType = [_RepeatType stringByAppendingString:RepeatTime[BIG_WEEKDAY]];
+            _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:RepeatIntervalTime[BIG_WEEKDAY]];
         }
         else if (SelectedDays >> SMALL_WEEKDAY & 0x001)
         {
-           _RepeatType= [_RepeatType stringByAppendingString:RepeatTime[SMALL_WEEKDAY]];
+           _RepeatIntervalType= [_RepeatIntervalType stringByAppendingString:RepeatIntervalTime[SMALL_WEEKDAY]];
         }
     }
     else
     {
         if (SelectedDays>>SATURDAY & 0x001) {
-           _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[SATURDAY]]];
+           _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[SATURDAY]]];
         }
         if (SelectedDays>>SUNDAY & 0x001) {
-            _RepeatType = [_RepeatType stringByAppendingString:[self CutString:RepeatTime[SUNDAY]]];
+            _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[SUNDAY]]];
         }
     }
     //回调函数，返回当前重复的类型
-    [_delegate AlarmRepeatType:SelectedDays Text:_RepeatType];
+    [_delegate AlarmRepeatIntervalType:SelectedDays Text:_RepeatIntervalType];
 }
 
 -(NSString*)CutString:(NSString*)str

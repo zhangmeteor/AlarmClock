@@ -20,9 +20,9 @@
 
 #import "AlarmRememberDelegate.h"
 
-#import "AlarmRepeatDelegate.h"
+#import "AlarmRepeatIntervalDelegate.h"
 
-#import "AlarmRepeatViewController.h"
+#import "AlarmRepeatIntervalViewController.h"
 
 #import "AlarmSoundDelegate.h"
 
@@ -35,19 +35,19 @@ typedef enum _alarm_set_item
 {
     ALARM__REMEMBER                                        = 0, /** 提醒内容 */
 	ALARM_SOUND,	/** 铃声 */
-	ALARM_REPEAT,	/** 重复 */
+	ALARM_REPEAT_INTERVAL,	/** 重复 */
     ALARM_SHUFFLE,	/** 随机铃声 */
 	ALARM_REMINDER_LATER,	/** 稍后提醒 */
 }ALARM_SET_ITEM;
 
-@interface AddAlarmViewController ()<AlarmRememberDelegate,AlarmRepeatDelegate,AlarmSoundDelegate>
+@interface AddAlarmViewController ()<AlarmRememberDelegate,AlarmRepeatIntervalDelegate,AlarmSoundDelegate>
 {
     NSArray* AlarmSetItem;
     NSMutableArray* AlarmDefaultState;
     
-    char        AlarmRepeatType;
+    char        AlarmRepeatIntervalType;
     NSString* AlarmSoundKey;
-    NSArray* AlarmTime;
+    NSDate* AlarmTime;
     
     BOOL     IsReminderLater;
     BOOL     IsShuffle;
@@ -64,7 +64,7 @@ typedef enum _alarm_set_item
     AlarmSetItem                                           = @[@"提醒内容",@"铃声",@"重复",@"随机铃声",@"稍后提醒"];
     AlarmDefaultState                                      = [@[@"闹钟",@"Opening (Default)",@"永不",@"",@""]mutableCopy];
     //默认为不重复
-    AlarmRepeatType                                        = 0x000;
+    AlarmRepeatIntervalType                                        = 0x000;
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -74,7 +74,7 @@ typedef enum _alarm_set_item
  */
 - (IBAction)SaveAlarm:(id)sender {
     //获取Data时间
-    AlarmTime =  [GlobalFunction ChangeDataTimeToString:_AlarmTimePicker.date];
+    AlarmTime = _AlarmTimePicker.date;
     //Alarm数据序列化
     NSMutableDictionary* clockDictionary                   = [NSMutableDictionary dictionaryWithCapacity:5];
     [_SetAlarmTableView.visibleCells enumerateObjectsUsingBlock:^(UITableViewCell* cell , NSUInteger idx , BOOL* stop)
@@ -87,12 +87,13 @@ typedef enum _alarm_set_item
                  case ALARM_SOUND:
                      [clockDictionary setObject:((SetAlarmCell*)cell).CellCurrentState.text forKey:@"ClockMusic"];
                      break;
-                 case ALARM_REPEAT:
-                     [clockDictionary setObject:((SetAlarmCell*)cell).CellCurrentState.text forKey:@"ClockRepeat"];
+                 case ALARM_REPEAT_INTERVAL:
+                     [clockDictionary setObject:((SetAlarmCell*)cell).CellCurrentState.text forKey:@"ClockRepeatInterval"];
                      break;
              }
          }
      }];
+    [clockDictionary setObject:[NSString stringWithFormat:@"%x",AlarmRepeatIntervalType] forKey:@"ClockRepeatIntervalChar"];
     [clockDictionary setObject:[NSNumber numberWithBool:IsShuffle] forKey:@"ClockShuffle"];
     [clockDictionary setObject:[NSNumber numberWithBool:IsReminderLater] forKey:@"ClockReminderLater"];
     [clockDictionary setObject:AlarmTime forKey:@"ClockTime"];
@@ -182,13 +183,13 @@ typedef enum _alarm_set_item
             ((AlarmSoundViewController*)destination).currentSound  = AlarmSoundKey;
         }
     }
-    if (indexPath.row == ALARM_REPEAT) {
+    if (indexPath.row == ALARM_REPEAT_INTERVAL) {
         //初始化
-        destination                                            = [[[NSBundle mainBundle] loadNibNamed:@"AlarmRepeatViewController" owner:self options:nil]objectAtIndex:0];
+        destination                                            = [[[NSBundle mainBundle] loadNibNamed:@"AlarmRepeatIntervalViewController" owner:self options:nil]objectAtIndex:0];
         //设置代理
-        ((AlarmRepeatViewController*)destination).delegate     = self;
+        ((AlarmRepeatIntervalViewController*)destination).delegate     = self;
         //设置重复状态
-        ((AlarmRepeatViewController*)destination).SelectedDays = AlarmRepeatType;
+        ((AlarmRepeatIntervalViewController*)destination).SelectedDays = AlarmRepeatIntervalType;
     }
     //push
     [self.navigationController pushViewController:(UIViewController*)destination animated:YES];
@@ -246,12 +247,12 @@ typedef enum _alarm_set_item
     [_SetAlarmTableView reloadData];
 }
 
-#pragma AlarmRepeatDelegate
--(void)AlarmRepeatType:(char)type Text:(NSString*)text
+#pragma AlarmRepeatIntervalDelegate
+-(void)AlarmRepeatIntervalType:(char)type Text:(NSString*)text
 {
     //修改重复内容
-    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM_REPEAT];
-    AlarmRepeatType                                        = type;
+    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM_REPEAT_INTERVAL];
+    AlarmRepeatIntervalType                                        = type;
     [_SetAlarmTableView reloadData];
 }
 

@@ -22,6 +22,23 @@ typedef enum _view_mode
     /** 不同页面不同状态 */
 }VIEW_MODE;
 
+/**
+	interval Days
+ */
+typedef enum _weekday
+{
+	SUNDAY=0,	/**  */
+	MONDAY,	/**  */
+	TUESDAY,	/**  */
+	WEDNESDAY,	/**  */
+	THURSDAY,	/**  */
+	FRIDAY,	/**  */
+	SATURDAY,	/**  */
+	SMALL_WEEKDAY,	/**  */
+	BIG_WEEKDAY,	/**  */
+    WEEKDAY_COUNT = 7,
+}WEEKDAY;
+
 @interface GlobalFunction : NSObject
 
 +(double)GetGlobalViewState;

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AlarmRepeatDelegate <NSObject>
--(void)AlarmRepeatType:(char)type Text:(NSString*)text;
+@protocol AlarmRepeatIntervalDelegate <NSObject>
+-(void)AlarmRepeatIntervalType:(char)type Text:(NSString*)text;
 @end

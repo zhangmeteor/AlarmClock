@@ -66,8 +66,8 @@
 		61173589185AAA6600290A55 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61173588185AAA6600290A55 /* AVFoundation.framework */; };
 		6119987B185802B600C16652 /* AlarmSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61199879185802B600C16652 /* AlarmSoundViewController.m */; };
 		6119987C185802B600C16652 /* AlarmSoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6119987A185802B600C16652 /* AlarmSoundViewController.xib */; };
-		61199881185805A600C16652 /* AlarmRepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6119987F185805A600C16652 /* AlarmRepeatViewController.m */; };
-		61199882185805A600C16652 /* AlarmRepeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61199880185805A600C16652 /* AlarmRepeatViewController.xib */; };
+		61199881185805A600C16652 /* AlarmRepeatIntervalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6119987F185805A600C16652 /* AlarmRepeatIntervalViewController.m */; };
+		61199882185805A600C16652 /* AlarmRepeatIntervalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61199880185805A600C16652 /* AlarmRepeatIntervalViewController.xib */; };
 		618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 618F71DD183B655D00842F9D /* NavigationBarView.m */; };
 		61BB2E81183B3A72005E71AB /* WakeUpTrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E7F183B3A72005E71AB /* WakeUpTrendViewController.m */; };
 		61BB2E86183B3A98005E71AB /* DeathTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB2E84183B3A98005E71AB /* DeathTimeViewController.m */; };
@@ -119,7 +119,7 @@
 		1FBA2F7D185A24F50020E720 /* Uplift.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Uplift.m4a; sourceTree = "<group>"; };
 		1FBA2F7E185A24F50020E720 /* Waves.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Waves.m4a; sourceTree = "<group>"; };
 		48DF38B0DC59498888A58C86 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		6102D5F218594E6C0082B7B0 /* AlarmRepeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRepeatDelegate.h; sourceTree = "<group>"; };
+		6102D5F218594E6C0082B7B0 /* AlarmRepeatIntervalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRepeatIntervalDelegate.h; sourceTree = "<group>"; };
 		6105F22F184342FA00588CDE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6105F230184342FA00588CDE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6105F232184344BC00588CDE /* CustomPresentModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPresentModal.h; sourceTree = "<group>"; };
@@ -162,9 +162,9 @@
 		61199878185802B600C16652 /* AlarmSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmSoundViewController.h; sourceTree = "<group>"; };
 		61199879185802B600C16652 /* AlarmSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmSoundViewController.m; sourceTree = "<group>"; };
 		6119987A185802B600C16652 /* AlarmSoundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmSoundViewController.xib; sourceTree = "<group>"; };
-		6119987E185805A600C16652 /* AlarmRepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRepeatViewController.h; sourceTree = "<group>"; };
-		6119987F185805A600C16652 /* AlarmRepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmRepeatViewController.m; sourceTree = "<group>"; };
-		61199880185805A600C16652 /* AlarmRepeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmRepeatViewController.xib; sourceTree = "<group>"; };
+		6119987E185805A600C16652 /* AlarmRepeatIntervalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmRepeatIntervalViewController.h; sourceTree = "<group>"; };
+		6119987F185805A600C16652 /* AlarmRepeatIntervalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmRepeatIntervalViewController.m; sourceTree = "<group>"; };
+		61199880185805A600C16652 /* AlarmRepeatIntervalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmRepeatIntervalViewController.xib; sourceTree = "<group>"; };
 		618F71DC183B655D00842F9D /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarView.h; sourceTree = "<group>"; };
 		618F71DD183B655D00842F9D /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarView.m; sourceTree = "<group>"; };
 		618F71E0183B6E7700842F9D /* NavigationBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationBarDelegate.h; sourceTree = "<group>"; };
@@ -461,10 +461,10 @@
 		6119987D1858059200C16652 /* AlarmRepeat */ = {
 			isa = PBXGroup;
 			children = (
-				6119987E185805A600C16652 /* AlarmRepeatViewController.h */,
-				6119987F185805A600C16652 /* AlarmRepeatViewController.m */,
-				61199880185805A600C16652 /* AlarmRepeatViewController.xib */,
-				6102D5F218594E6C0082B7B0 /* AlarmRepeatDelegate.h */,
+				6119987E185805A600C16652 /* AlarmRepeatIntervalViewController.h */,
+				6119987F185805A600C16652 /* AlarmRepeatIntervalViewController.m */,
+				61199880185805A600C16652 /* AlarmRepeatIntervalViewController.xib */,
+				6102D5F218594E6C0082B7B0 /* AlarmRepeatIntervalDelegate.h */,
 			);
 			name = AlarmRepeat;
 			sourceTree = "<group>";
@@ -509,6 +509,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = zhanghao;
+				TargetAttributes = {
+					610929F9183B25CD0028B71F = {
+						DevelopmentTeam = 38B8ZDZNTZ;
+					};
+				};
 			};
 			buildConfigurationList = 610929F5183B25CD0028B71F /* Build configuration list for PBXProject "Alarm" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -571,7 +576,7 @@
 				1FBA2F88185A24F50020E720 /* Crystals.m4a in Resources */,
 				610DA3AA185AF6C900A92F7C /* AlarmCell.xib in Resources */,
 				6111E6D0183CB79800D77D96 /* AlarmNavigationController.xib in Resources */,
-				61199882185805A600C16652 /* AlarmRepeatViewController.xib in Resources */,
+				61199882185805A600C16652 /* AlarmRepeatIntervalViewController.xib in Resources */,
 				1FBA2F92185A24F50020E720 /* Signal.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,7 +638,7 @@
 				61BB2E8B183B3AC3005E71AB /* WeatherViewController.m in Sources */,
 				6105F234184344BC00588CDE /* CustomPresentModal.m in Sources */,
 				61BB2E90183B3AD2005E71AB /* MusicSetViewController.m in Sources */,
-				61199881185805A600C16652 /* AlarmRepeatViewController.m in Sources */,
+				61199881185805A600C16652 /* AlarmRepeatIntervalViewController.m in Sources */,
 				610D8A49183B4C4F0030A1FF /* LeftSliderViewController.m in Sources */,
 				618F71DE183B655D00842F9D /* NavigationBarView.m in Sources */,
 				61BB2E95183B3AE2005E71AB /* BackgroundSetViewController.m in Sources */,
@@ -717,11 +722,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48DF38B0DC59498888A58C86 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alarm/Alarm-Prefix.pch";
 				INFOPLIST_FILE = "Alarm/Alarm-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -730,11 +738,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48DF38B0DC59498888A58C86 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alarm/Alarm-Prefix.pch";
 				INFOPLIST_FILE = "Alarm/Alarm-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

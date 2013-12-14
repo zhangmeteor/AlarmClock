@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -42,7 +42,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="AlarmAmOrPm" destination="JL2-PY-ONR" id="ceR-bI-uW4"/>
-                <outlet property="AlarmRememberAndRepeat" destination="mT9-f3-2BH" id="FLP-9o-Xa7"/>
+                <outlet property="AlarmRememberAndRepeatInterval" destination="mT9-f3-2BH" id="OvS-V0-w1P"/>
                 <outlet property="AlarmSwitch" destination="yFg-DF-QW4" id="BGi-qx-f3F"/>
                 <outlet property="AlarmTime" destination="zTT-CA-xSW" id="WIG-1z-fxG"/>
             </connections>
