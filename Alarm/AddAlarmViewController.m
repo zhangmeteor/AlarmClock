@@ -133,13 +133,7 @@ typedef enum _alarm_set_item
         ((SwitchCell*)cell).CellLabel.text                     = AlarmSetItem[indexPath.row];
         [((SwitchCell*)cell).CellSwitch addTarget:self action:@selector(RemindLater:) forControlEvents:UIControlEventValueChanged];
         ((SwitchCell*)cell).CellSwitch.tag                     = indexPath.row;
-        if (indexPath.row == ALARM_REMINDER_LATER) {
-            ((SwitchCell*)cell).CellSwitch.on                      = IsReminderLater;
-        }
-        else
-        {
-            ((SwitchCell*)cell).CellSwitch.on                      = IsShuffle;
-        }
+        ((SwitchCell*)cell).CellSwitch.on  = (indexPath.row == ALARM_REMINDER_LATER)?IsReminderLater:IsShuffle;
         return cell;
     }
     else

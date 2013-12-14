@@ -26,7 +26,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-   self                            = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self                            = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -50,15 +50,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   static NSString* CellIdentifier = @"cell";
-   UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString* CellIdentifier = @"cell";
+    UITableViewCell* cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-   cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell                            = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }   cell.textLabel.text             = RepeatIntervalTime[indexPath.row];
-     if ((SelectedDays >> indexPath.row) & 0x001)
-     {
-         cell.accessoryType              = UITableViewCellAccessoryCheckmark;
-     }
+    
+    cell.accessoryType  = ((SelectedDays >> indexPath.row) & 0x001)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     return  cell;
 }
 
@@ -71,7 +69,7 @@
     if (indexPath.row == SUNDAY) {
         _Sunday = indexPath;
     }
-
+    
     //选中框
     UITableViewCell* cell           = [tableView cellForRowAtIndexPath:indexPath];
     //大周小周不能同时选中
@@ -95,7 +93,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-    
+
 
 //返回事件
 -(void)viewWillDisappear:(BOOL)animated
@@ -129,7 +127,7 @@
     
     //全部选中的情况
     if (SelectedDays  == 0x07f) {
-       _RepeatIntervalType = @"每天";
+        _RepeatIntervalType = @"每天";
         //回调函数，返回当前重复的类型
         [_delegate AlarmRepeatIntervalType:SelectedDays Text:_RepeatIntervalType];
         return;
@@ -141,20 +139,20 @@
         [_delegate AlarmRepeatIntervalType:SelectedDays Text:_RepeatIntervalType];
         return;
     }
-   //选中大小周和没选中大小周的处理
+    //选中大小周和没选中大小周的处理
     if (_IsWeekdayChoose) {
         if (SelectedDays >> BIG_WEEKDAY & 0x001) {
             _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:RepeatIntervalTime[BIG_WEEKDAY]];
         }
         else if (SelectedDays >> SMALL_WEEKDAY & 0x001)
         {
-           _RepeatIntervalType= [_RepeatIntervalType stringByAppendingString:RepeatIntervalTime[SMALL_WEEKDAY]];
+            _RepeatIntervalType= [_RepeatIntervalType stringByAppendingString:RepeatIntervalTime[SMALL_WEEKDAY]];
         }
     }
     else
     {
         if (SelectedDays>>SATURDAY & 0x001) {
-           _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[SATURDAY]]];
+            _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[SATURDAY]]];
         }
         if (SelectedDays>>SUNDAY & 0x001) {
             _RepeatIntervalType = [_RepeatIntervalType stringByAppendingString:[self CutString:RepeatIntervalTime[SUNDAY]]];
