@@ -124,8 +124,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView.editing == YES) {
+       //Get Infomation of Selected Alarm
+        NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        
+       //Jump to EditView of Selected Alarm
+        UINavigationController* EditViewNavigation = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAlarmViewControllerNavigation"];
+        [self presentViewController:EditViewNavigation animated:YES completion:nil];
+       
+        AddAlarmViewController* EditView = [EditViewNavigation.viewControllers objectAtIndex:0];
+        EditView.clockID = indexPath.row;
+        [EditView setAlarmDefaultState:[@[[clockDictionary objectForKey:@"ClockRemember"],@"",[clockDictionary objectForKey:@"ClockRepeatInterval"],@"",@""]mutableCopy]];
+        
+        //回到完成状态
+        [_AlarmTableView setEditing:NO animated:NO];
+        self.navigationItem.leftBarButtonItem.title = @"编辑";
+    }
 }
-
 
 /**
 	点击编辑委托函数
@@ -182,7 +197,6 @@
         //回到完成状态
         [_AlarmTableView setEditing:NO animated:NO];
         self.navigationItem.leftBarButtonItem.title = @"编辑";
-        
 //        [_AlarmTableView reloadData];
     }
 }

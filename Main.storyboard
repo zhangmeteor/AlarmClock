@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyr-Ud-ytE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eyr-Ud-ytE">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Alarm View Controller - Title-->
@@ -37,7 +37,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rnG-i0-gy2">
                             <connections>
-                                <segue destination="GGu-ym-OQr" kind="custom" customClass="CustomPresentModal" id="AaS-iu-LU6"/>
+                                <segue destination="GGu-ym-OQr" kind="custom" identifier="EditAlarmView" customClass="CustomPresentModal" id="AaS-iu-LU6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -149,7 +149,7 @@
         <!--Add Alarm View Controller - Set Alarm-->
         <scene sceneID="Flv-71-MkG">
             <objects>
-                <viewController id="G4K-ut-vjC" customClass="AddAlarmViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddAlarmViewController" id="G4K-ut-vjC" customClass="AddAlarmViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="80r-Dy-8n5"/>
                         <viewControllerLayoutGuide type="bottom" id="pbU-uj-5vF"/>
@@ -294,7 +294,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Navigation Controller-->
         <scene sceneID="oKj-FU-Ksq">
             <objects>
-                <navigationController definesPresentationContext="YES" id="GGu-ym-OQr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AddAlarmViewControllerNavigation" definesPresentationContext="YES" id="GGu-ym-OQr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="efl-jb-9UU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

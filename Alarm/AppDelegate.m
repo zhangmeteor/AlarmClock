@@ -14,6 +14,22 @@
 
 #import "GlobalFunction.h"
 
+/**
+ * 实现NSUncaughtExceptionHandler方法
+ */
+void uncaughtExceptionHandler(NSException *exception)
+{
+    // 调用堆栈
+    NSArray *arr = [exception callStackSymbols];
+    // 错误reason
+    NSString *reason = [exception reason];
+    // exception name
+    NSString *name = [exception name];
+    
+    // 根据自己的需求将crash信息记录下来，下次启动的时候传给服务器。
+    // 尽量不要在此处将crash信息上传，因为App将要退出，不保证能够将信息上传至服务器
+}
+
 @interface AppDelegate () <PKRevealing>
 
 @property (strong,nonatomic) PKRevealController* pKRevealController;

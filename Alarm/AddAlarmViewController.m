@@ -28,6 +28,8 @@
 
 #import "AlarmSoundViewController.h"
 
+static const int DefaultStateLength = 5;
+
 /**
  设置每行label名称
  */
@@ -43,7 +45,7 @@ typedef enum _alarm_set_item
 @interface AddAlarmViewController ()<AlarmRememberDelegate,AlarmRepeatIntervalDelegate,AlarmSoundDelegate>
 {
     NSArray* AlarmSetItem;
-    NSMutableArray* AlarmDefaultState;
+    NSMutableArray* m_AlarmDefaultState;
     
     char        AlarmRepeatIntervalType;
     NSString* AlarmSoundKey;
@@ -57,22 +59,56 @@ typedef enum _alarm_set_item
 
 @implementation AddAlarmViewController
 @synthesize clockID;
+@dynamic AlarmDefaultState;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.clockID                                           = [GlobalFunction GetClockNumber];
+    //设置ClockId
+    if (!self.clockID) {
+        self.clockID                                           = [GlobalFunction GetClockNumber] + 1;
+    }
+    else
+    {
+        self.clockID++;
+    }
+   //设置默认显示信息
     AlarmSetItem                                           = @[@"提醒内容",@"铃声",@"重复",@"随机铃声",@"稍后提醒"];
-    AlarmDefaultState                                      = [@[@"闹钟",@"Opening (Default)",@"永不",@"",@""]mutableCopy];
+    if (![m_AlarmDefaultState count]) {
+        m_AlarmDefaultState                                      = [@[@"闹钟",@"Opening (Default)",@"永不",@"",@""]mutableCopy];
+    }
     //默认为不重复
     AlarmRepeatIntervalType                                        = 0x000;
-    
     // Do any additional setup after loading the view from its nib.
 }
+
+/**
+	AlarmDefault Setter and Getter
+ */
+-(void)setAlarmDefaultState:(NSMutableArray *)AlarmDefaultState
+{
+    if ([AlarmDefaultState count] != DefaultStateLength) {
+        return;
+    }
+    
+    if (m_AlarmDefaultState) {
+        m_AlarmDefaultState = nil;
+        [m_AlarmDefaultState removeAllObjects];
+    }
+    m_AlarmDefaultState = [AlarmDefaultState mutableCopy];
+}
+
+-(NSMutableArray*)AlarmDefaultState
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Can't get AlarmDefaultState Info from property" userInfo:nil];
+}
+
 
 /**
  Add Alarm
  */
 - (IBAction)SaveAlarm:(id)sender {
+    //当前clockId
+    NSString* SaveClockId = [NSString stringWithFormat:@"%d",clockID - 1];
     //获取Data时间
     AlarmTime = _AlarmTimePicker.date;
     //Alarm数据序列化
@@ -98,15 +134,24 @@ typedef enum _alarm_set_item
     [clockDictionary setObject:[NSNumber numberWithBool:IsReminderLater] forKey:@"ClockReminderLater"];
     [clockDictionary setObject:AlarmTime forKey:@"ClockTime"];
     
-    NSUserDefaults* userDefault                            = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:clockDictionary forKey:[NSString stringWithFormat:@"%d",clockID]];
     
-    //增加Clock数目
-    [GlobalFunction AddClockNumber];
+    NSUserDefaults* userDefault                            = [NSUserDefaults standardUserDefaults];
+    //如果存在，修改
+    NSMutableDictionary* test = [userDefault objectForKey:SaveClockId];
+    if ([userDefault objectForKey:SaveClockId]) {
+        [userDefault removeObjectForKey:SaveClockId];
+    }
+    else
+    {
+        //增加Clock数目
+        [GlobalFunction AddClockNumber];
+    }
+    //不存在，添加
+    [userDefault setObject:clockDictionary forKey:SaveClockId];
+    [userDefault synchronize];
     
     //关闭当前页面
     [self dismissViewControllerAnimated:YES completion:nil];
-    //    clockDictionary setObject:<#(id)#> forKey:<#(id<NSCopying>)#>
 }
 
 
@@ -140,7 +185,7 @@ typedef enum _alarm_set_item
     {
         cell                                                   = [[[NSBundle mainBundle] loadNibNamed:@"SetAlarmCell" owner:self options:nil]objectAtIndex:0];
         ((SetAlarmCell*)cell).CellLabel.text                   = AlarmSetItem[indexPath.row];
-        ((SetAlarmCell*)cell).CellCurrentState.text            = AlarmDefaultState[indexPath.row];
+        ((SetAlarmCell*)cell).CellCurrentState.text            = m_AlarmDefaultState[indexPath.row];
         cell.tag                                               = indexPath.row;
     }
     //不允许修改铃声时
@@ -165,7 +210,7 @@ typedef enum _alarm_set_item
         //设置代理
         ((AlarmRememberViewController*)destination).delegate   = self;
         //设置textfield文字
-        [((AlarmRememberViewController*)destination).AlarmRememberText setText:AlarmDefaultState[indexPath.row]];
+        [((AlarmRememberViewController*)destination).AlarmRememberText setText:m_AlarmDefaultState[indexPath.row]];
     }
     if (indexPath.row == ALARM_SOUND) {
         //初始化
@@ -237,7 +282,7 @@ typedef enum _alarm_set_item
 -(void)SetAlarmRemeberText:(NSString*)text
 {
     //修改闹钟提醒内容
-    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM__REMEMBER];
+    [m_AlarmDefaultState setObject:text atIndexedSubscript:ALARM__REMEMBER];
     [_SetAlarmTableView reloadData];
 }
 
@@ -245,7 +290,7 @@ typedef enum _alarm_set_item
 -(void)AlarmRepeatIntervalType:(char)type Text:(NSString*)text
 {
     //修改重复内容
-    [AlarmDefaultState setObject:text atIndexedSubscript:ALARM_REPEAT_INTERVAL];
+    [m_AlarmDefaultState setObject:text atIndexedSubscript:ALARM_REPEAT_INTERVAL];
     AlarmRepeatIntervalType                                        = type;
     [_SetAlarmTableView reloadData];
 }
@@ -253,7 +298,7 @@ typedef enum _alarm_set_item
 -(void)AlarmSoundTest:(NSString*)type Key:(NSString*)key
 {
     //修改铃声
-    [AlarmDefaultState setObject:type atIndexedSubscript:ALARM_SOUND];
+    [m_AlarmDefaultState setObject:type atIndexedSubscript:ALARM_SOUND];
     AlarmSoundKey                                          = [key copy];
     [_SetAlarmTableView reloadData];
 }

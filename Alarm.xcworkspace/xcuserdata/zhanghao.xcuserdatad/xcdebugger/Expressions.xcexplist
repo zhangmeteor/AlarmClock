@@ -6,6 +6,14 @@
          contextName = "-[AlarmNavigationController pushViewController:withAnimation:]:AlarmNavigationController.m">
       </ContextState>
       <ContextState
+         contextName = "-[AddAlarmViewController viewDidLoad]:AddAlarmViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "clockID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[AlarmViewController numberOfSectionsInTableView:]:AlarmViewController.m">
          <PersistentStrings>
             <PersistentString
