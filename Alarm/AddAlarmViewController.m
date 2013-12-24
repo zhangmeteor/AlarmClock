@@ -64,18 +64,20 @@ typedef enum _alarm_set_item
 {
     [super viewDidLoad];
     //设置ClockId
-    if (!self.clockID) {
-        self.clockID                                           = [GlobalFunction GetClockNumber] + 1;
+    if (!(++self.clockID)) {
+        self.clockID                                           = [GlobalFunction GetClockNumber];
     }
-    else
-    {
-        self.clockID++;
-    }
+
    //设置默认显示信息
     AlarmSetItem                                           = @[@"提醒内容",@"铃声",@"重复",@"随机铃声",@"稍后提醒"];
     if (![m_AlarmDefaultState count]) {
-        m_AlarmDefaultState                                      = [@[@"闹钟",@"Opening (Default)",@"永不",@"",@""]mutableCopy];
+        m_AlarmDefaultState                                      = [@[@"闹钟",@"Opening (Default)",@"永不",[NSNumber numberWithBool:IsShuffle],[NSNumber numberWithBool:IsReminderLater]]mutableCopy];
     }
+    
+    //设置switch按钮状态
+    IsShuffle = [m_AlarmDefaultState[3]boolValue];
+    IsReminderLater = [m_AlarmDefaultState[4]boolValue];
+    
     //默认为不重复
     AlarmRepeatIntervalType                                        = 0x000;
     // Do any additional setup after loading the view from its nib.
@@ -108,7 +110,7 @@ typedef enum _alarm_set_item
  */
 - (IBAction)SaveAlarm:(id)sender {
     //当前clockId
-    NSString* SaveClockId = [NSString stringWithFormat:@"%d",clockID - 1];
+    NSString* SaveClockId = [NSString stringWithFormat:@"%d",self.clockID - 1];
     //获取Data时间
     AlarmTime = _AlarmTimePicker.date;
     //Alarm数据序列化

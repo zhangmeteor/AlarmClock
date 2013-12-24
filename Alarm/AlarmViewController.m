@@ -113,6 +113,7 @@
     NSArray* timeArray =  [GlobalFunction ChangeDataTimeToString:timeDate];
     ((AlarmCell*)cell).AlarmAmOrPm.text = [timeArray objectAtIndex:1];
     ((AlarmCell*)cell).AlarmTime.text = [timeArray objectAtIndex:0];
+    [((AlarmCell*)cell).AlarmSwitch addTarget:self action:@selector(SwitchAlarm:) forControlEvents:UIControlEventTouchUpInside];
     //设置铃声
     NSString* Sound =  [clockDictionary objectForKey:@"ClockMusic"];
     //设置本地推送
@@ -126,15 +127,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView.editing == YES) {
        //Get Infomation of Selected Alarm
-        NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        NSDictionary* clockDictionary = [userDefault    objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         
        //Jump to EditView of Selected Alarm
         UINavigationController* EditViewNavigation = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAlarmViewControllerNavigation"];
         [self presentViewController:EditViewNavigation animated:YES completion:nil];
        
         AddAlarmViewController* EditView = [EditViewNavigation.viewControllers objectAtIndex:0];
-        EditView.clockID = indexPath.row;
-        [EditView setAlarmDefaultState:[@[[clockDictionary objectForKey:@"ClockRemember"],@"",[clockDictionary objectForKey:@"ClockRepeatInterval"],@"",@""]mutableCopy]];
+        [EditView setClockID:indexPath.row];
+        [EditView setAlarmDefaultState:[@[[clockDictionary objectForKey:@"ClockRemember"],[clockDictionary objectForKey:@"ClockMusic"],[clockDictionary objectForKey:@"ClockRepeatInterval"],[clockDictionary objectForKey:@"ClockShuffle"],[clockDictionary objectForKey:@"ClockReminderLater"]]mutableCopy]];
         
         //回到完成状态
         [_AlarmTableView setEditing:NO animated:NO];
@@ -291,6 +292,20 @@
     }
 }
 
+-(void)SwitchAlarm:(id)sender
+{
+    UISwitch* Switch                                       = (UISwitch*)sender;
+    BOOL  isButtonOn                                       = [Switch isOn];
+    switch (isButtonOn) {
+        case TRUE:
+            
+            break;
+        case FALSE:
+            break;
+        default:
+            break;
+    }
+}
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
