@@ -90,6 +90,26 @@
     return [GlobalFunction GetClockNumber];
 }
 
+/**
+	Set Clock Alert
+ */
+- (void)SetClockAlertWith:(int)index Remember_p:(NSString **)Remember_p timeDate_p:(NSDate **)timeDate_p RepeatInterval_p:(NSString **)RepeatInterval_p
+{
+    NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",index]];
+    //设置提示内容和重复日期
+    *Remember_p = [clockDictionary objectForKey:@"ClockRemember"];
+    *RepeatInterval_p = [clockDictionary objectForKey:@"ClockRepeatInterval"];
+    NSString* RepeatIntervalString = [clockDictionary objectForKey:@"ClockRepeatIntervalChar"];
+    int RepeatIntervalInt = [RepeatIntervalString intValue];
+    char RepeatIntervalChar  = RepeatIntervalInt & 0xfff;
+    //设置时间
+    *timeDate_p = [clockDictionary objectForKey:@"ClockTime"];
+    //设置铃声
+    NSString* Sound =  [clockDictionary objectForKey:@"ClockMusic"];
+    //设置本地推送
+    [self SetClockAlert:*timeDate_p Text:*Remember_p Sound:Sound RepeatInterval:RepeatIntervalChar UserID:index];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString* CellIdentifier = @"cell";
@@ -100,24 +120,17 @@
     cell = [[[NSBundle mainBundle]loadNibNamed:@"AlarmCell" owner:self options:nil]objectAtIndex:0];
     ((AlarmCell*)cell).editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    NSDictionary* clockDictionary = [userDefault objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-    //设置提示内容和重复日期
-    NSString* Remember = [clockDictionary objectForKey:@"ClockRemember"];
-    NSString* RepeatInterval = [clockDictionary objectForKey:@"ClockRepeatInterval"];
-    NSString* RepeatIntervalString = [clockDictionary objectForKey:@"ClockRepeatIntervalChar"];
-    int RepeatIntervalInt = [RepeatIntervalString intValue];
-    char RepeatIntervalChar  = RepeatIntervalInt & 0xfff;
+    NSString *Remember;
+    NSString *RepeatInterval;
+    NSDate *timeDate;
+    [self SetClockAlertWith:indexPath.row Remember_p:&Remember timeDate_p:&timeDate RepeatInterval_p:&RepeatInterval];
+    
+    //设置cell显示内容
     ((AlarmCell*)cell).AlarmRememberAndRepeatInterval.text = [NSString stringWithFormat:@"%@,  %@",Remember,RepeatInterval];
-    //设置时间
-    NSDate* timeDate = [clockDictionary objectForKey:@"ClockTime"];
     NSArray* timeArray =  [GlobalFunction ChangeDataTimeToString:timeDate];
     ((AlarmCell*)cell).AlarmAmOrPm.text = [timeArray objectAtIndex:1];
     ((AlarmCell*)cell).AlarmTime.text = [timeArray objectAtIndex:0];
-    [((AlarmCell*)cell).AlarmSwitch addTarget:self action:@selector(SwitchAlarm:) forControlEvents:UIControlEventTouchUpInside];
-    //设置铃声
-    NSString* Sound =  [clockDictionary objectForKey:@"ClockMusic"];
-    //设置本地推送
-    [self SetClockAlert:timeDate Text:Remember Sound:Sound RepeatInterval:RepeatIntervalChar UserID:indexPath.row];
+    [((AlarmCell*)cell).AlarmSwitch addTarget:self action:@selector(SwitchAlarm:) forControlEvents:UIControlEventValueChanged];
     
     return cell;
 }
@@ -134,7 +147,7 @@
         [self presentViewController:EditViewNavigation animated:YES completion:nil];
        
         AddAlarmViewController* EditView = [EditViewNavigation.viewControllers objectAtIndex:0];
-        [EditView setClockID:indexPath.row];
+        [EditView setClockID:indexPath.row + 1];
         [EditView setAlarmDefaultState:[@[[clockDictionary objectForKey:@"ClockRemember"],[clockDictionary objectForKey:@"ClockMusic"],[clockDictionary objectForKey:@"ClockRepeatInterval"],[clockDictionary objectForKey:@"ClockShuffle"],[clockDictionary objectForKey:@"ClockReminderLater"]]mutableCopy]];
         
         //回到完成状态
@@ -294,15 +307,25 @@
 
 -(void)SwitchAlarm:(id)sender
 {
+    //Swith State
     UISwitch* Switch                                       = (UISwitch*)sender;
     BOOL  isButtonOn                                       = [Switch isOn];
+   
+    UISwitch *switchView = (UISwitch *)sender;
+    UITableViewCell *cell = (UITableViewCell *)switchView.superview.superview.superview;
+    
+    NSIndexPath *SwitchIndexPath = [_AlarmTableView indexPathForCell:cell];
+    
+    NSString *Remember;
+    NSString *RepeatInterval;
+    NSDate *timeDate;
+    
     switch (isButtonOn) {
         case TRUE:
-            
+            [self SetClockAlertWith:SwitchIndexPath.row Remember_p:&Remember timeDate_p:&timeDate RepeatInterval_p:&RepeatInterval];
             break;
         case FALSE:
-            break;
-        default:
+            [self CancleClockAlert:SwitchIndexPath.row];
             break;
     }
 }

@@ -13,6 +13,7 @@
 {
     UIViewController * current = self.sourceViewController;
     [current dismissViewControllerAnimated:YES completion:nil];
+    current = nil;
 }
 
 @end

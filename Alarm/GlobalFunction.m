@@ -62,6 +62,12 @@ static NSUInteger s_ClockNumber = 0;
 /**
 	设置当前闹钟总数目
  */
++(void)SetClockNumber
+{
+    NSUserDefaults* userDefault                            = [NSUserDefaults standardUserDefaults];
+    s_ClockNumber =  [[userDefault objectForKey:@"ClockNumber"]intValue];
+}
+
 +(int)GetClockNumber
 {
     return s_ClockNumber;
@@ -70,6 +76,10 @@ static NSUInteger s_ClockNumber = 0;
 +(void)AddClockNumber
 {
     s_ClockNumber++;
+    NSUserDefaults* userDefault                            = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:[NSNumber numberWithInt:s_ClockNumber] forKey:@"ClockNumber"];
+    [userDefault synchronize];
+    
 }
 
 +(void)DeleteClockNumber
@@ -77,6 +87,9 @@ static NSUInteger s_ClockNumber = 0;
     if (s_ClockNumber) {
         s_ClockNumber--;
     }
+    NSUserDefaults* userDefault                            = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:[NSNumber numberWithInt:s_ClockNumber] forKey:@"ClockNumber"];
+    [userDefault synchronize];
 }
 
 /**

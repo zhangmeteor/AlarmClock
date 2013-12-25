@@ -55,6 +55,9 @@ static const double s_LeftSliderWidth = 170;
      NSArray* const CurrentViewModelTitle = @[@"Alarm",@"Music",@"Background Color",@"Weather",@"Death Time",@"WakeUp Trend"];
     [GlobalFunction SetGlobalViewTitle:CurrentViewModelTitle];
     
+    //Set Alarm ClockNumber
+    [GlobalFunction SetClockNumber];
+    
     //Add Notification
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(HideLeftSlider) name:ChangeCurrentViewNotification object:nil];
     

@@ -59,6 +59,8 @@ typedef enum _weekday
 
 +(void)DeleteClockNumber;
 
++(void)SetClockNumber;
+
 +(NSArray*)ChangeDataTimeToString:(NSDate*)date;
 
 @end

@@ -64,8 +64,9 @@ typedef enum _alarm_set_item
 {
     [super viewDidLoad];
     //设置ClockId
-    if (!(++self.clockID)) {
+    if (!self.clockID) {
         self.clockID                                           = [GlobalFunction GetClockNumber];
+        self.clockID++;
     }
 
    //设置默认显示信息
