@@ -50,6 +50,8 @@ static const double s_LeftSliderWidth = 170;
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    NSLog(@"aaa");
    
     //Set LeftSliderBar title
      NSArray* const CurrentViewModelTitle = @[@"Alarm",@"Music",@"Background Color",@"Weather",@"Death Time",@"WakeUp Trend"];
